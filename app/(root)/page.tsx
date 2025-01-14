@@ -1,3 +1,3 @@
 export default function Homepage() {
-  return <div>Potzyn</div>;
+  return <div className="wrapper ">Potzyn</div>;
 }
