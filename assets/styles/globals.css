@@ -20,24 +20,33 @@
   .grid-center {
     @apply grid justify-center items-center;
   }
+  .grid-between {
+    @apply grid justify-between items-center;
+  }
 
   .h1 {
-    @apply font-medium text-3xl lg:text-5xl;
+    @apply font-bold text-3xl lg:text-4xl;
   }
 
   .h2 {
-    @apply font-bold text-2xl lg:text-3xl;
+    @apply font-bold text-xl lg:text-2xl;
   }
 
   .h3 {
-    @apply font-medium text-xl lg:text-2xl;
+    @apply font-medium text-lg lg:text-xl;
   }
   .body-1 {
     @apply text-xs text-light lg:text-base;
   }
+  .body-2 {
+    @apply lg:text-[0.75rem] text-light text-[0.5rem];
+  }
 
   .hover-scale {
     @apply hover:scale-110;
+  }
+  .hover-translateY {
+    @apply hover:translate-y-[-0.5rem];
   }
 }
 
