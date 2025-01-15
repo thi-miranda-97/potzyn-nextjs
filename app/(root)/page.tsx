@@ -1,12 +1,14 @@
-import FeaturedProduct from "@/components/products/featuredproduct";
+import FeaturedProduct from "@/components/shared/products/featuredproduct";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import productData from "@/db/sample-data";
 export default function Homepage() {
+  console.log(productData);
   return (
     <main className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
       <FeaturedProduct />
       <div className=" rounded px-2 lg:px-4 py-3 lg:py-6 shadow-sm w-full">
-        <h1 className="h1 mb-2 lg:mb-4">
+        <h1 className="h1 mb-2 lg:mb-4 uppercase">
           Your Potzyn for Indoor & Outdoor Plants 🌿
         </h1>
         <p className="body-1 mb-3 lg:mb-6">

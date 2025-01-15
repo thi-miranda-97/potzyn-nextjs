@@ -7,7 +7,7 @@ export default function ModeToggleTheme() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="pointer hover-scale">
+    <div className="cursor-pointer hover-scale">
       <Brightness4OutlinedIcon
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       />

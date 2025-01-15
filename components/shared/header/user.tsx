@@ -2,7 +2,7 @@ import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 
 export default function User() {
   return (
-    <div>
+    <div className="cursor-pointer">
       <PersonOutlineRoundedIcon />
     </div>
   );
