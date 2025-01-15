@@ -1,14 +1,62 @@
+"use client";
 import ModeToggleTheme from "./mode-toggle";
 import User from "./user";
 import Search from "./search";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetTitle,
+} from "@/components/ui/sheet";
+import { SheetTrigger } from "@/components/ui/sheet";
+import MenuIcon from "@mui/icons-material/Menu";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import classNames from "classnames";
+
 export default function Menu() {
+  const pathname = usePathname(); // Get the current path
+  // Function to check if the link is active
+  const isActive = (path: string) => pathname === path;
   return (
-    <div className="flex justify-end gap-4 lg:gap-8">
-      <ModeToggleTheme />
-      <LocalMallOutlinedIcon />
-      <Search />
-      <User />
-    </div>
+    <>
+      <div className="flex justify-end gap-4 lg:gap-8">
+        <ModeToggleTheme />
+        <LocalMallOutlinedIcon />
+        <Search />
+        <User />
+        <nav className="md:hidden">
+          <Sheet>
+            <SheetTrigger className="align-middle">
+              <MenuIcon />
+            </SheetTrigger>
+            <SheetContent>
+              <SheetTitle>Menu</SheetTitle>
+              <SheetDescription>
+                <nav className="flex-col flex-center gap-10 mt-10 md:hidden">
+                  {[
+                    { path: "/", label: "Home" },
+                    { path: "/about", label: "About" },
+                    { path: "/store", label: "Our Store" },
+                    { path: "/contact", label: "Contact" },
+                  ].map(({ path, label }) => (
+                    <Link
+                      key={path}
+                      href={path}
+                      className={classNames("text-foreground hover:font-bold", {
+                        "font-bold": isActive(path),
+                      })}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetDescription>
+            </SheetContent>
+          </Sheet>
+        </nav>
+      </div>
+    </>
   );
 }

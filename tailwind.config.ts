@@ -52,6 +52,11 @@ export default {
           "5": "var(--chart-5)",
         },
       },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 5px)",
+        sm: "calc(var(--radius) - 10px)",
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

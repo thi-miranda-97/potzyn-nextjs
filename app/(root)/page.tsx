@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 export default function Homepage() {
   return (
-    <main className="grid-between grid-cols-2 gap-3 lg:gap-6">
+    <main className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
       <FeaturedProduct />
-      <div className="bg-gray-100 rounded px-2 lg:px-4 py-3 lg:py-6 shadow-sm w-full">
+      <div className=" rounded px-2 lg:px-4 py-3 lg:py-6 shadow-sm w-full">
         <h1 className="h1 mb-2 lg:mb-4">
           Your Potzyn for Indoor & Outdoor Plants 🌿
         </h1>
@@ -15,7 +15,7 @@ export default function Homepage() {
           space and your mood!
         </p>
         <Button className="mb-4 lg:mb-8">Get Started</Button>
-        <div className="rounded w-full bg-background flex-between flex-col lg:flex-row gap-3 lg:gap-6 p-2 lg:p-4 shadow-sm cursor-pointer hover-translateY">
+        <div className="rounded w-full bg-background flex-between flex-col md:flex-row gap-3 md:gap-6 p-2 md:p-4 shadow-sm cursor-pointer hover-translateY">
           <div className="justify-start">
             <h3 className="h3">Snake Plant (Sansevieria)</h3>
             <p className="body-2 mb-1 lg:mb-2">
