@@ -7,8 +7,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 export default function Footer() {
   return (
-    <>
-      <div className="wrapper flex-between border-t">
+    <div className="wrapper">
+      <div className="flex-between border-t">
         <Logo />
         <NavLink />
         <div className="flex justify-end gap-3 lg:gap-6 body-1">
@@ -20,6 +20,9 @@ export default function Footer() {
       </div>
       {/* FOOTER IMAGE BACKGROUND */}
       <div></div>
-    </>
+      <div className="text-center text-[0.5rem] lg:text-[1rem] text-gray-500">
+        &copy;2025 Potzyn. All Rights Reserved.
+      </div>
+    </div>
   );
 }

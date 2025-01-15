@@ -4,7 +4,7 @@
 
 @layer utilities {
   .wrapper {
-    @apply max-w-7xl lg:mx-auto p-5 md:px-10 w-full;
+    @apply max-w-7xl my-1 lg:my-2 lg:mx-auto p-5 md:px-10 w-full;
   }
 
   .flex-start {
@@ -17,9 +17,12 @@
   .flex-between {
     @apply flex justify-between items-center;
   }
+  .grid-center {
+    @apply grid justify-center items-center;
+  }
 
   .h1 {
-    @apply font-semibold text-3xl lg:text-5xl;
+    @apply font-medium text-3xl lg:text-5xl;
   }
 
   .h2 {
@@ -30,7 +33,7 @@
     @apply font-medium text-xl lg:text-2xl;
   }
   .body-1 {
-    @apply text-xs text-gray-500 lg:text-base;
+    @apply text-xs text-light lg:text-base;
   }
 
   .hover-scale {
@@ -42,12 +45,13 @@
   :root {
     --background: #f6f6f6;
     --foreground: #212121;
+    --light: #545454;
     --card: #ffffff; /* HSL(0 0% 100%) => #ffffff */
     --card-foreground: #1c0d08; /* HSL(222.2 84% 4.9%) => #1c0d08 */
     --popover: #ffffff; /* HSL(0 0% 100%) => #ffffff */
     --popover-foreground: #1c0d08; /* HSL(222.2 84% 4.9%) => #1c0d08 */
     --primary: #576e51;
-    --primary-foreground: #f5fbff; /* HSL(210 40% 98%) => #f5fbff */
+    --primary-foreground: #f6f6f6; /* HSL(210 40% 98%) => #f5fbff */
     --secondary: #ebf1f7; /* HSL(210 40% 96.1%) => #ebf1f7 */
     --secondary-foreground: #d9cab3;
     --muted: #ebf1f7; /* HSL(210 40% 96.1%) => #ebf1f7 */
@@ -99,6 +103,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
