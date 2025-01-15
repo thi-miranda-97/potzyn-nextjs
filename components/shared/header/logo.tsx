@@ -6,7 +6,7 @@ export default function Logo() {
     <div className="flex-start">
       <Link href="/" className="flex-start ml-4">
         <Image
-          src="/images/favicon.svg"
+          src="/images/logo.svg"
           alt={APP_NAME}
           height={48}
           width={48}
