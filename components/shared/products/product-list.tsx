@@ -46,7 +46,7 @@ export default function ProductList({
     : filteredProducts;
 
   return (
-    <div>
+    <section>
       <h2 className="h2 uppercase text-center mb-2 lg:mb-4">{title}</h2>
       <p className="body-1 text-center mb-3 lg:mb-6">{description}</p>
       {/* Filter Links */}
@@ -102,6 +102,6 @@ export default function ProductList({
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

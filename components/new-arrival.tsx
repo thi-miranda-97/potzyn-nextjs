@@ -48,7 +48,7 @@ export default function NewArrival({
   };
 
   return (
-    <div>
+    <section>
       <h2 className="h2 mb-2 lg:mb-4">{title}</h2>
       <p className="body-1 mb-3 lg:mb-6">{description}</p>
 
@@ -82,6 +82,6 @@ export default function NewArrival({
           <p>No products found</p>
         </div>
       )}
-    </div>
+    </section>
   );
 }

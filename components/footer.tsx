@@ -7,8 +7,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";
 export default function Footer() {
   return (
-    <div className="wrapper">
-      <div className="flex-between border-t">
+    <footer className="wrapper">
+      <div className="flex-between border-t py-3 lg:py-6">
         <Logo />
         <NavLink />
         <div className="flex justify-end gap-3 lg:gap-6 body-1">
@@ -23,6 +23,6 @@ export default function Footer() {
       <div className="text-center text-[0.5rem] lg:text-[1rem] text-gray-500">
         &copy;2025 Potzyn. All Rights Reserved.
       </div>
-    </div>
+    </footer>
   );
 }

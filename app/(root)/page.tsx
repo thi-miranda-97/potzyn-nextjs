@@ -5,11 +5,13 @@ import productData from "@/db/sample-data";
 import ProductList from "@/components/shared/products/product-list";
 import Features from "@/components/features";
 import NewArrival from "@/components/new-arrival";
+import BlogList from "@/components/shared/blog/blog-list";
+import CTA from "@/components/cta";
 
 export default function Homepage() {
   return (
     <main className="grid grid-cols-1 gap-10 lg:gap-24">
-      <div className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+      <section className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
         {/* HERO */}
         <Features />
         <div className="bg-accent rounded-lg p-3 lg:p-6 shadow-sm w-full">
@@ -26,7 +28,7 @@ export default function Homepage() {
           <Button className="mb-4 lg:mb-8 uppercase">Get Started</Button>
           <Features />
         </div>
-      </div>
+      </section>
       {/* PRODUCT LIST */}
       <ProductList
         data={productData.products}
@@ -42,6 +44,21 @@ export default function Homepage() {
         title="Fresh Blooms, Fresh Starts: New In Stock"
         description="Exciting new plant arrivals to kickstart your collection and breathe
           fresh life into your home or garden."
+      />
+
+      {/* BLOG */}
+      <BlogList />
+
+      {/* CTA SECTION */}
+      <CTA
+        title="🎁 Limited-Time Offer: Gift a Subscription, Get a Bonus Plant!"
+        description={
+          <>
+            To enter the giveaway, simply subscribe newsletter{" "}
+            <strong>Potzyn</strong> with your email.{" "}
+            <strong>50 lucky winners</strong> will be chosen at random!
+          </>
+        }
       />
     </main>
   );
