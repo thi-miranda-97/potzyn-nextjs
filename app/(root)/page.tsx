@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button";
 
 import productData from "@/db/sample-data";
 import ProductList from "@/components/shared/products/product-list";
+import Features from "@/components/features";
 
 export default function Homepage() {
   return (
     <main className="grid grid-cols-1 gap-8 lg:gap-16">
       <div className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
         {/* HERO */}
-
+        <Features />
         <div className="bg-accent rounded-lg p-3 lg:p-6 shadow-sm w-full">
           <h1 className="h1 mb-2 lg:mb-4">Grow Joy, One Leaf at a Time</h1>
           <p className="body-1 mb-3 lg:mb-6">
@@ -22,22 +23,7 @@ export default function Homepage() {
             life to your surroundings.
           </p>
           <Button className="mb-4 lg:mb-8 uppercase">Get Started</Button>
-
-          {/* Single Featured Product */}
-          <div className="flex-between">
-            <div className="flex-center flex-col">
-              <h2 className="h2">200+</h2>
-              <p className="body-2">Unique</p>
-            </div>
-            <div className="flex-center flex-col">
-              <h2 className="h2">200+</h2>
-              <p className="body-2">Unique</p>
-            </div>
-            <div className="flex-center flex-col">
-              <h2 className="h2">200+</h2>
-              <p className="body-2">Unique</p>
-            </div>
-          </div>
+          <Features />
         </div>
       </div>
       {/* PRODUCT LIST */}

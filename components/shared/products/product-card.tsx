@@ -58,7 +58,9 @@ export default function ProductCard({ product }: { product: any }) {
                 </CardFooter>
               </div>
             ) : (
-              <span className="text-[#f6f6f6] font-bold h1">SOLD OUT</span>
+              <span className="text-[#f6f6f6] font-bold text-2xl lg:text-3xl text-destructive">
+                SOLD OUT
+              </span>
             )}
           </CardContent>
         </Link>
