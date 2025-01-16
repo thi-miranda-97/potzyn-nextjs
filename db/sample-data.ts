@@ -15,7 +15,7 @@ const productData = {
       brand: "Green Paradise",
       rating: 4.8,
       numReviews: 15,
-      stock: 12,
+      stock: 0,
       isFeatured: true,
       banner: "/images/banner-lavender.jpg",
     },

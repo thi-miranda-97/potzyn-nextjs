@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
@@ -25,29 +27,39 @@ export default function ProductCard({ product }: { product: any }) {
             className="w-full h-full object-cover"
           />
           {/* Gradient Overlay */}
-          <CardContent className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-            <div className="w-full flex-between">
-              <CardHeader className="flex flex-col">
-                <span className="w-fit bg-primary text-[#f6f6f6] rounded-lg body-2 p-1 lg:p-3/2">
-                  {product.category}
-                </span>
-                <CardTitle className="h4 text-[#f6f6f6]">
-                  {product.name}
-                </CardTitle>
-                <CardDescription className="text-[#c7c7c7] body-2">
-                  {product.description}
-                </CardDescription>
-              </CardHeader>
+          <CardContent
+            className={`absolute inset-0 flex ${
+              product.stock > 0
+                ? "bg-gradient-to-t from-black/70 to-transparent items-end"
+                : "backdrop-grayscale-[75%] place-items-center justify-center"
+            } `}
+          >
+            {product.stock > 0 ? (
+              <div className="w-full flex-between">
+                <CardHeader className="flex flex-col">
+                  <span className="w-fit bg-primary text-[#f6f6f6] rounded-lg body-2 px-3/2 lg:px-2 py-1/2 lg:py-1">
+                    {product.category}
+                  </span>
+                  <CardTitle className="h4 text-[#f6f6f6]">
+                    {product.name}
+                  </CardTitle>
+                  <CardDescription className="text-[#c7c7c7] body-2">
+                    {product.description}
+                  </CardDescription>
+                </CardHeader>
 
-              <CardFooter className="flex flex-col gap-1 lg:gap-2">
-                <p className="text-center font-bold text-[#f6f6f6]">
-                  ${product.price}
-                </p>
-                <Button className="rounded-full hover-scale">
-                  <LocalMallOutlinedIcon />
-                </Button>
-              </CardFooter>
-            </div>
+                <CardFooter className="flex flex-col gap-1 lg:gap-2">
+                  <p className="text-center font-bold text-[#f6f6f6]">
+                    ${product.price}
+                  </p>
+                  <Button className="rounded-full hover-scale">
+                    <LocalMallOutlinedIcon />
+                  </Button>
+                </CardFooter>
+              </div>
+            ) : (
+              <span className="text-[#f6f6f6] font-bold h1">SOLD OUT</span>
+            )}
           </CardContent>
         </Link>
       </div>

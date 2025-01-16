@@ -73,7 +73,7 @@
     --chart-3: #2d5f77; /* HSL(197 37% 24%) => #2d5f77 */
     --chart-4: #e5b13b; /* HSL(43 74% 66%) => #e5b13b */
     --chart-5: #f3c54c; /* HSL(27 87% 67%) => #f3c54c */
-    --radius: 0.5rem;
+    --radius: 1rem;
   }
 
   .dark {
