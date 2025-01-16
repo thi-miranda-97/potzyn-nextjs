@@ -12,7 +12,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        light: "var(--light)",
+
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
@@ -41,7 +41,7 @@ export default {
           DEFAULT: "var(--destructive)",
           foreground: "var(--destructive-foreground)",
         },
-        border: "var(--border)",
+
         input: "var(--input)",
         ring: "var(--ring)",
         chart: {
