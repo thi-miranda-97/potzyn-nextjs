@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import productData from "@/db/sample-data";
 import ProductList from "@/components/shared/products/product-list";
 import Features from "@/components/features";
+import NewArrival from "@/components/new-arrival";
 
 export default function Homepage() {
   return (
-    <main className="grid grid-cols-1 gap-8 lg:gap-16">
+    <main className="grid grid-cols-1 gap-10 lg:gap-24">
       <div className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
         {/* HERO */}
         <Features />
@@ -30,10 +31,18 @@ export default function Homepage() {
       <ProductList
         data={productData.products}
         title="Nature's Best in Every Pot: Shop Our Favorites"
+        description="From lush indoor companions to blooming outdoor beauties, explore our top picks that add energy and life to your home."
         limit={3}
       />
 
       {/* NEW ARRIVAL */}
+      <NewArrival
+        data={productData.products}
+        limit={6}
+        title="Fresh Blooms, Fresh Starts: New In Stock"
+        description="Exciting new plant arrivals to kickstart your collection and breathe
+          fresh life into your home or garden."
+      />
     </main>
   );
 }

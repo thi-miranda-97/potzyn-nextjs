@@ -11,6 +11,7 @@ interface Product {
   images: string[];
   price: number;
   brand: string;
+  isNew: boolean;
   rating: number;
   numReviews: number;
   stock: number;
@@ -21,10 +22,12 @@ interface Product {
 export default function ProductList({
   data,
   title,
+  description,
   limit,
 }: {
   data: Product[];
   title?: string;
+  description?: string;
   limit?: number;
 }) {
   const [filter, setFilter] = useState<string | null>(null);
@@ -45,10 +48,7 @@ export default function ProductList({
   return (
     <div>
       <h2 className="h2 uppercase text-center mb-2 lg:mb-4">{title}</h2>
-      <p className="body-1 text-center mb-3 lg:mb-6">
-        From lush indoor companions to blooming outdoor beauties, explore our
-        top picks that add energy and life to your home.
-      </p>
+      <p className="body-1 text-center mb-3 lg:mb-6">{description}</p>
       {/* Filter Links */}
       <div className="flex-between mb-3 lg:mb-6">
         <div className="flex gap-3 lg:gap-6">
