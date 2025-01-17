@@ -18,7 +18,7 @@ export default function CTA({
 
   const { toast } = useToast();
   // Function to handle subscription
-  const handleSubscription = (e) => {
+  function handleSubscription(e) {
     e.preventDefault();
     // Simple email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -37,7 +37,7 @@ export default function CTA({
       }); // Mark as subscribed
       console.log("Subscribed with email:", email);
     }
-  };
+  }
 
   // Custom renderer for countdown timer
   const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
@@ -96,7 +96,7 @@ export default function CTA({
               placeholder="potzyn@gmail.com"
               value={email} // Bind value to email state
               onChange={(e) => setEmail(e.target.value)} // Update email state
-              className="mb-2 lg:mb-3 w-[80%] h-10 bg-input rounded-lg py-1 lg:py-2 px-2 lg:px-4 text-[#212121] font-inherit placeholder:text-gray-400"
+              className=" mb-2 lg:mb-3 w-[80%] h-10 bg-input rounded-lg py-1 lg:py-2 px-2 lg:px-4 text-[#212121] font-inherit placeholder:text-gray-400"
             />
             {error && (
               <p className="text-destructive text-sm mb-3 lg:mb-6">{error}</p>
@@ -104,7 +104,7 @@ export default function CTA({
 
             <Button
               type="submit" // Submit form
-              className="w-full sm:w-auto mx-auto bg-primary rounded-full px-8 py-3 hover:opacity-90"
+              className=""
             >
               Subscribe Now
             </Button>

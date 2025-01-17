@@ -3,34 +3,19 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProductCard from "./product-card";
 
-interface Product {
-  name: string;
-  slug: string;
-  category: string;
-  description: string;
-  images: string[];
-  price: number;
-  brand: string;
-  isNew: boolean;
-  rating: number;
-  numReviews: number;
-  stock: number;
-  isFeatured: boolean;
-  banner: string;
-}
-
 export default function ProductList({
   data,
   title,
   description,
   limit,
 }: {
-  data: Product[];
+  data: any;
   title?: string;
   description?: string;
   limit?: number;
 }) {
-  const [filter, setFilter] = useState<string | null>(null);
+  // Set the default filter to "indoor"
+  const [filter, setFilter] = useState<string>("indoor");
 
   // Filter the products based on the selected category
   const filteredProducts =
@@ -81,8 +66,10 @@ export default function ProductList({
           </Button>
         </div>
         <Button
-          onClick={() => setFilter(null)}
-          className={` ${!filter ? "" : "bg-foreground text-background"}`}
+          // onClick={() => setFilter("all")}
+          className={` ${
+            filter === "all" ? "bg-foreground text-background" : ""
+          }`}
         >
           See All
         </Button>
@@ -92,7 +79,7 @@ export default function ProductList({
       <div>
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {limitedProductData.map((product: Product) => (
+            {limitedProductData.map((product: any) => (
               <ProductCard key={product.slug} product={product} />
             ))}
           </div>

@@ -13,19 +13,17 @@ export default function Homepage() {
     <main className="grid grid-cols-1 gap-10 lg:gap-24">
       <section className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
         {/* HERO */}
-        <Features />
+
         <div className="bg-accent rounded-lg p-3 lg:p-6 shadow-sm w-full">
           <h1 className="h1 mb-2 lg:mb-4">Grow Joy, One Leaf at a Time</h1>
           <p className="body-1 mb-3 lg:mb-6">
-            Looking to transform your home, office, or garden into a lush,
-            vibrant oasis? You&apos;ve come to the right place! At{" "}
-            <strong>Potzyn</strong>, we bring nature closer to you with our wide
-            variety of potted flowers, indoor plants, and outdoor plants.
-            Whether you&apos;re a seasoned plant parent or just getting started,
-            our handpicked selections will spark joy, purify your space, and add
-            life to your surroundings.
+            Transform your space into a lush oasis with <strong>Potzyn</strong>!
+            Explore our wide range of potted flowers, indoor, and outdoor
+            plants. Perfect for plant lovers or beginners, our handpicked
+            selections bring joy, purify your space, and add life to any
+            setting.
           </p>
-          <Button className="mb-4 lg:mb-8 uppercase">Get Started</Button>
+          <Button className="mb-4 lg:mb-8">Get Started</Button>
           <Features />
         </div>
       </section>
@@ -34,13 +32,13 @@ export default function Homepage() {
         data={productData.products}
         title="Nature's Best in Every Pot: Shop Our Favorites"
         description="From lush indoor companions to blooming outdoor beauties, explore our top picks that add energy and life to your home."
-        limit={3}
+        limit={6}
       />
 
       {/* NEW ARRIVAL */}
       <NewArrival
         data={productData.products}
-        limit={6}
+        limit={3}
         title="Fresh Blooms, Fresh Starts: New In Stock"
         description="Exciting new plant arrivals to kickstart your collection and breathe
           fresh life into your home or garden."

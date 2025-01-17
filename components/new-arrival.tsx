@@ -3,35 +3,43 @@ import { useState } from "react";
 import ProductCard from "./shared/products/product-card";
 import { Button } from "@/components/ui/button";
 
-interface Product {
-  name: string;
-  slug: string;
-  category: string;
-  description: string;
-  images: string[];
-  price: number;
-  brand: string;
-  isNew: boolean;
-  rating: number;
-  numReviews: number;
-  stock: number;
-  isFeatured: boolean;
-  banner: string;
-}
+// interface Product {
+//   name: string;
+//   slug: string;
+//   category: string;
+//   description: string;
+//   images: string[];
+//   price: number;
+//   brand: string;
+//   createdAt: string; // ISO string representing the date the product was created
+//   rating: number;
+//   numReviews: number;
+//   stock: number;
+//   isFeatured: boolean;
+//   banner: string;
+// }
 
 export default function NewArrival({
   data,
   title,
   description,
-  limit,
+  limit = 6,
 }: {
-  data: Product[];
+  data: any;
   title?: string;
   description?: string;
   limit?: number;
 }) {
-  const newArrivalProducts = data.filter((product) => product.isNew);
   const [currentPage, setCurrentPage] = useState(0);
+
+  // Filter products created within the last 7 days
+  const currentDate = new Date();
+  const newArrivalProducts = data.filter((product) => {
+    const createdAtDate = new Date(product.createdAt);
+    const timeDifference = currentDate.getTime() - createdAtDate.getTime();
+    const daysDifference = timeDifference / (1000 * 60 * 60 * 24); // Convert to days
+    return daysDifference <= 7;
+  });
 
   // Calculate total pages
   const totalPages = Math.ceil(newArrivalProducts.length / limit);
@@ -56,7 +64,7 @@ export default function NewArrival({
       {newArrivalProducts.length > 0 ? (
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {paginatedData.map((product: Product) => (
+            {paginatedData.map((product: any) => (
               <ProductCard key={product.slug} product={product} />
             ))}
           </div>
