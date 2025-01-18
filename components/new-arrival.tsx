@@ -3,27 +3,11 @@ import { useState } from "react";
 import ProductCard from "./shared/products/product-card";
 import { Button } from "@/components/ui/button";
 
-// interface Product {
-//   name: string;
-//   slug: string;
-//   category: string;
-//   description: string;
-//   images: string[];
-//   price: number;
-//   brand: string;
-//   createdAt: string; // ISO string representing the date the product was created
-//   rating: number;
-//   numReviews: number;
-//   stock: number;
-//   isFeatured: boolean;
-//   banner: string;
-// }
-
 export default function NewArrival({
   data,
   title,
   description,
-  limit = 6,
+  limit = 3,
 }: {
   data: any;
   title?: string;
@@ -63,7 +47,7 @@ export default function NewArrival({
       {/* NEW ARRIVAL PRODUCTS */}
       {newArrivalProducts.length > 0 ? (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {paginatedData.map((product: any) => (
               <ProductCard key={product.slug} product={product} />
             ))}

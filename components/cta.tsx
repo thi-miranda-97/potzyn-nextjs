@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import Countdown from "react-countdown";
 import { Button } from "@/components/ui/button";
@@ -71,7 +73,7 @@ export default function CTA({
       <h2 className="h2 text-center mb-2 lg:mb-4">{title}</h2>
       <p className="body-1 mb-5 lg:mb-10 text-center">{description}</p>
 
-      <div className="grid-between grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
+      <div className="grid-between grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
         {/* Countdown Timer */}
         <div className="text-center">
           <h4 className="h4 border border-foreground rounded-lg mb-3 lg:mb-6">
@@ -110,7 +112,13 @@ export default function CTA({
             </Button>
           </form>
         </div>
-        <Image src="" alt="" className="w-full h-auto" />
+        <Image
+          src="/images/sample-products/product-16-1.jpeg"
+          alt="CTA image section"
+          width={300}
+          height={300}
+          className="w-full h-auto rounded-lg"
+        />
       </div>
     </section>
   );

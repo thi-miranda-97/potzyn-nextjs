@@ -39,10 +39,13 @@
     @apply font-medium text-base lg:text-lg uppercase;
   }
   .body-1 {
-    @apply text-xs text-accent-foreground lg:text-base;
+    @apply text-[1rem] text-accent-foreground lg:text-[1.2rem];
   }
   .body-2 {
-    @apply lg:text-[0.75rem] text-[0.5rem];
+    @apply lg:text-[0.85rem] text-[0.65rem];
+  }
+  .tag {
+    @apply text-[0.5rem] lg:text-[0.7rem];
   }
 
   .hover-scale {

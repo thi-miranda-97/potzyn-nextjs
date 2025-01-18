@@ -15,7 +15,7 @@ import {
 
 export default function ProductCard({ product }: { product: any }) {
   return (
-    <Card className="w-full max-w-sm">
+    <Card className="w-full h-auto">
       <div className="p-0 items-center relative">
         <Link href={`/product/${product.slug}`}>
           <Image
@@ -37,7 +37,7 @@ export default function ProductCard({ product }: { product: any }) {
             {product.stock > 0 ? (
               <div className="w-full flex-between">
                 <CardHeader className="flex flex-col">
-                  <span className="w-fit bg-primary text-[#f6f6f6] rounded-lg body-2 px-3/2 lg:px-2 py-1/2 lg:py-1">
+                  <span className="w-fit bg-primary text-[#f6f6f6] rounded-lg tag px-2 lg:px-3 py-1 lg:py-2">
                     {product.category}
                   </span>
                   <CardTitle className="h4 text-[#f6f6f6]">

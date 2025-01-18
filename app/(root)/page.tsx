@@ -1,19 +1,29 @@
-"use client";
 import { Button } from "@/components/ui/button";
-
+import {
+  getLatestProducts,
+  getFeaturedProducts,
+} from "@/lib/actions/product.actions";
 import productData from "@/db/sample-data";
 import ProductList from "@/components/shared/products/product-list";
 import Features from "@/components/features";
 import NewArrival from "@/components/new-arrival";
 import BlogList from "@/components/shared/blog/blog-list";
 import CTA from "@/components/cta";
+import ProductCard from "@/components/shared/products/product-card";
 
-export default function Homepage() {
+const Homepage = async () => {
+  const latestProducts = await getLatestProducts();
+  const featuredProducts = await getFeaturedProducts();
+  // Select a random featured product based on the current date
+  const randomIndex = new Date().getDate() % featuredProducts.length;
+  const randomFeaturedProduct = featuredProducts[randomIndex];
   return (
     <main className="grid grid-cols-1 gap-10 lg:gap-24">
-      <section className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+      <section className="grid-between grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 justify-start">
         {/* HERO */}
-
+        {randomFeaturedProduct && (
+          <ProductCard product={randomFeaturedProduct} />
+        )}
         <div className="bg-accent rounded-lg p-3 lg:p-6 shadow-sm w-full">
           <h1 className="h1 mb-2 lg:mb-4">Grow Joy, One Leaf at a Time</h1>
           <p className="body-1 mb-3 lg:mb-6">
@@ -37,8 +47,7 @@ export default function Homepage() {
 
       {/* NEW ARRIVAL */}
       <NewArrival
-        data={productData.products}
-        limit={3}
+        data={latestProducts}
         title="Fresh Blooms, Fresh Starts: New In Stock"
         description="Exciting new plant arrivals to kickstart your collection and breathe
           fresh life into your home or garden."
@@ -50,14 +59,10 @@ export default function Homepage() {
       {/* CTA SECTION */}
       <CTA
         title="🎁 Limited-Time Offer: Gift a Subscription, Get a Bonus Plant!"
-        description={
-          <>
-            To enter the giveaway, simply subscribe newsletter{" "}
-            <strong>Potzyn</strong> with your email.{" "}
-            <strong>50 lucky winners</strong> will be chosen at random!
-          </>
-        }
+        description="To enter the giveaway, simply subscribe newsletter
+            Potzyn with your email. 50 lucky winners will be chosen at random!"
       />
     </main>
   );
-}
+};
+export default Homepage;

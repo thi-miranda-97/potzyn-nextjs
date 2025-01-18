@@ -226,7 +226,7 @@ const productData = {
     {
       name: "Radiant Rose Pot",
       slug: "radiant-rose-pot",
-      category: "Potted Flowers",
+      category: "Flowers",
       description:
         "A delightful pot of mini roses to add vibrant color to your space.",
       images: [
