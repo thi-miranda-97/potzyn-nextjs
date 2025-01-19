@@ -59,10 +59,10 @@ export default function NewArrival({
             {Array.from({ length: totalPages }, (_, index) => (
               <Button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 rounded-lg transition-all duration-300 ${
                   currentPage === index
                     ? "bg-foreground w-12"
-                    : "bg-accent-foreground hover:bg-foreground"
+                    : "bg-accent border border-gray-300 hover:bg-foreground"
                 }`}
                 onClick={() => handlePageChange(index)}
                 aria-label={`Go to page ${index + 1}`}
