@@ -21,11 +21,11 @@
     @apply grid justify-center items-center;
   }
   .grid-between {
-    @apply grid justify-between items-center;
+    @apply grid justify-between;
   }
 
   .h1 {
-    @apply font-semibold text-3xl lg:text-4xl uppercase;
+    @apply font-semibold text-3xl lg:text-5xl uppercase;
   }
 
   .h2 {
@@ -39,7 +39,7 @@
     @apply font-medium text-base lg:text-lg uppercase;
   }
   .body-1 {
-    @apply text-[1rem] text-accent-foreground lg:text-[1.2rem];
+    @apply text-[0.85rem] text-accent-foreground lg:text-[1rem];
   }
   .body-2 {
     @apply lg:text-[0.85rem] text-[0.65rem];
@@ -53,6 +53,9 @@
   }
   .hover-translateY {
     @apply hover:translate-y-[-0.5rem];
+  }
+  .image {
+    @apply rounded-lg w-full h-full;
   }
 }
 
@@ -96,7 +99,7 @@
     --muted: #1b1c1a; /* HSL(217.2 32.6% 17.5%) => #1b1c1a */
     --muted-foreground: #91979e; /* HSL(215 20.2% 65.1%) => #91979e */
     /* HSL(210 40% 98%) => #f5fbff */
-    --destructive: #fca9a9; /* HSL(0 62.8% 30.6%) => #4c1e1e */
+    --destructive: #ca8787; /* HSL(0 62.8% 30.6%) => #4c1e1e */
     --destructive-foreground: #f5fbff; /* HSL(210 40% 98%) => #f5fbff */
 
     --ring: #d7dce5; /* HSL(212.7 26.8% 83.9%) => #d7dce5 */

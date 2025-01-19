@@ -14,7 +14,7 @@ const productData = {
       price: 19.99,
       rating: 4.8,
       numReviews: 15,
-      stock: 22,
+      stock: 0,
       isFeatured: true,
     },
     {

@@ -2,14 +2,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProductCard from "./product-card";
-
+import { Product } from "@/types";
+import Link from "next/link";
 export default function ProductList({
-  data,
+  data = [],
   title,
   description,
-  limit,
+  limit = 3,
 }: {
-  data: any;
+  data: Product[];
   title?: string;
   description?: string;
   limit?: number;
@@ -29,9 +30,12 @@ export default function ProductList({
   const limitedProductData = limit
     ? filteredProducts.slice(0, limit)
     : filteredProducts;
+  if (!data.length) {
+    return <p>No products available.</p>;
+  }
 
   return (
-    <section>
+    <section id="product-list">
       <h2 className="h2 uppercase text-center mb-2 lg:mb-4">{title}</h2>
       <p className="body-1 text-center mb-3 lg:mb-6">{description}</p>
       {/* Filter Links */}
@@ -66,20 +70,21 @@ export default function ProductList({
           </Button>
         </div>
         <Button
-          // onClick={() => setFilter("all")}
+          asChild
+          onClick={() => setFilter("all")}
           className={` ${
             filter === "all" ? "bg-foreground text-background" : ""
           }`}
         >
-          See All
+          <Link href="/store">See All</Link>
         </Button>
       </div>
 
       {/* Product List */}
 
       {filteredProducts.length > 0 ? (
-        <div className="grid-between grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-3">
-          {limitedProductData.map((product: any) => (
+        <div className="overflow-hidden grid-between grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-3 z-[1]">
+          {limitedProductData.map((product: Product) => (
             <ProductCard key={product.slug} product={product} />
           ))}
         </div>

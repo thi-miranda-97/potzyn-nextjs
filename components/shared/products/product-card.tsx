@@ -12,19 +12,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Product } from "@/types";
 
-export default function ProductCard({ product }: { product: any }) {
+export default function ProductCard({ product }: { product: Product }) {
   return (
-    <Card className="w-full h-auto">
+    <Card className="shadow-md">
       <div className="p-0 items-center relative">
-        <Link href={`/product/${product.slug}`}>
+        <Link
+          className="block object-cover  transition-all duration-300 hover-scale"
+          href={`/product/${product.slug}`}
+        >
           <Image
             src={product.images[0]}
             alt={product.name}
-            height={500}
-            width={500}
+            height={300}
+            width={300}
             priority={true}
-            className="w-full h-full object-cover"
+            className="w-full h-full"
           />
           {/* Gradient Overlay */}
           <CardContent

@@ -34,7 +34,7 @@ export default function Menu() {
             <SheetContent>
               <SheetTitle>Menu</SheetTitle>
               <SheetDescription>
-                <nav className="flex-col flex-center gap-10 mt-10 md:hidden">
+                <nav className="flex-col flex-center gap-10 mt-10 md:hidden ">
                   {[
                     { path: "/", label: "Home" },
                     { path: "/about", label: "About" },

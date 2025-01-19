@@ -2,14 +2,15 @@
 import { useState } from "react";
 import ProductCard from "./shared/products/product-card";
 import { Button } from "@/components/ui/button";
+import { Product } from "@/types";
 
 export default function NewArrival({
-  data,
+  data = [],
   title,
   description,
   limit = 3,
 }: {
-  data: any;
+  data: Product[];
   title?: string;
   description?: string;
   limit?: number;
@@ -40,7 +41,7 @@ export default function NewArrival({
   };
 
   return (
-    <section>
+    <section id="new-arrival">
       <h2 className="h2 mb-2 lg:mb-4">{title}</h2>
       <p className="body-1 mb-3 lg:mb-6">{description}</p>
 
@@ -48,7 +49,7 @@ export default function NewArrival({
       {newArrivalProducts.length > 0 ? (
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {paginatedData.map((product: any) => (
+            {paginatedData.map((product: Product) => (
               <ProductCard key={product.slug} product={product} />
             ))}
           </div>

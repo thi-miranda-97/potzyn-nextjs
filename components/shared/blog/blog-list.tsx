@@ -1,5 +1,5 @@
 "use client";
 
 export default function BlogList() {
-  return <section>BLOG LIST</section>;
+  return <section id="blog-list">BLOG LIST</section>;
 }
