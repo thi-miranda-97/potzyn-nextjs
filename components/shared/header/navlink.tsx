@@ -15,8 +15,8 @@ export default function NavLink() {
       <nav className="hidden md:flex gap-4 md:flex-row md:gap-10">
         {[
           { path: "/", label: "Home" },
-          { path: "/about", label: "About" },
           { path: "/store", label: "Our Store" },
+          { path: "/blog", label: "Blog" },
           { path: "/contact", label: "Contact" },
         ].map(({ path, label }) => (
           <Link

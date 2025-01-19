@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import CallMadeIcon from "@mui/icons-material/CallMade";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+
 export default function Hero() {
   return (
     <section className="grid grid-cols-1 justify-start">

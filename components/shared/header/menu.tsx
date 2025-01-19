@@ -37,8 +37,8 @@ export default function Menu() {
                 <nav className="flex-col flex-center gap-10 mt-10 md:hidden ">
                   {[
                     { path: "/", label: "Home" },
-                    { path: "/about", label: "About" },
                     { path: "/store", label: "Our Store" },
+                    { path: "/blog", label: "Blog" },
                     { path: "/contact", label: "Contact" },
                   ].map(({ path, label }) => (
                     <Link

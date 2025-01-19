@@ -10,6 +10,7 @@ import NewArrival from "@/components/new-arrival";
 import BlogList from "@/components/shared/blog/blog-list";
 import CTA from "@/components/cta";
 import { Product } from "@/types";
+import About from "@/components/ui/about";
 
 const Homepage = () => {
   // Correctly typed states for products
@@ -48,7 +49,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-10 lg:gap-24 mt-20 lg:mt-28">
+    <div className="grid grid-cols-1 gap-20 lg:gap-32 mt-20 lg:mt-28">
       {/* HERO */}
       <Hero />
 
@@ -59,6 +60,9 @@ const Homepage = () => {
         description="From lush indoor companions to blooming outdoor beauties, explore our top picks that add energy and life to your home."
         limit={3}
       />
+
+      {/* ABOUT US SECTION */}
+      <About />
 
       {/* NEW ARRIVAL */}
       <NewArrival

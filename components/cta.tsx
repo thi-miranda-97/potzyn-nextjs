@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { Input } from "./ui/input";
 
 export default function CTA({
   title,
@@ -106,14 +107,14 @@ export default function CTA({
             <h4 className="h4 border border-foreground rounded-lg mb-2 lg:mb-4">
               Subscribe to Enter
             </h4>
-            <input
-              type="email"
+            <Input
+              type={email}
               name="email"
               id="subscribe"
               placeholder="potzyn@gmail.com"
-              value={email} // Bind value to email state
-              onChange={(e) => setEmail(e.target.value)} // Update email state
-              className=" mb-2 lg:mb-3 w-[80%] h-10 bg-input rounded-lg py-1 lg:py-2 px-2 lg:px-4 text-[#212121] font-inherit placeholder:text-gray-400"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className=""
             />
             {error && (
               <p className="text-destructive text-sm mb-3 lg:mb-6">{error}</p>
