@@ -9,19 +9,36 @@ import Hero from "@/components/hero";
 import NewArrival from "@/components/new-arrival";
 import BlogList from "@/components/shared/blog/blog-list";
 import CTA from "@/components/cta";
+import { Product } from "@/types";
 
 const Homepage = () => {
-  const [latestProducts, setLatestProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
+  // Correctly typed states for products
+  const [latestProducts, setLatestProducts] = useState<Product[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const latestProducts = await getLatestProducts();
-        setLatestProducts(latestProducts);
-        const allProducts = await getAllProducts();
+        // Fetch latest and all products
+        const latestData = await getLatestProducts();
+        const allData = await getAllProducts();
 
-        setAllProducts(allProducts);
+        // Map fetched data to match the Product type
+        const formattedLatestData: Product[] = latestData.map((product) => ({
+          ...product,
+          price: product.price.toString(), // Convert Decimal to string
+          rating: product.rating.toString(), // Convert Decimal to string
+        }));
+
+        const formattedAllData: Product[] = allData.map((product) => ({
+          ...product,
+          price: product.price.toString(), // Convert Decimal to string
+          rating: product.rating.toString(), // Convert Decimal to string
+        }));
+
+        // Set the state with the formatted data
+        setLatestProducts(formattedLatestData);
+        setAllProducts(formattedAllData);
       } catch (error) {
         console.error("Error fetching products:", error);
       }
@@ -32,7 +49,7 @@ const Homepage = () => {
 
   return (
     <div className="grid grid-cols-1 gap-10 lg:gap-24 mt-20 lg:mt-28">
-      {/* HERO  */}
+      {/* HERO */}
       <Hero />
 
       {/* PRODUCT LIST */}

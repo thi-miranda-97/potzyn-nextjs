@@ -1,4 +1,4 @@
-"use client";
+"use client"; // Ensure this is at the top
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -7,10 +7,11 @@ import NotFoundPage from "@/app/not-found";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
+import { Product } from "@/types";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -20,13 +21,30 @@ const ProductDetailsPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      if (typeof slug !== "string") {
+        setError(true);
+        setLoading(false);
+        return;
+      }
+
       try {
         const productData = await getProductBySlug(slug);
+
         if (!productData) {
           setError(true);
           return;
         }
-        setProduct(productData);
+
+        // Format price and rating before setting the state
+        const formattedPrice = productData.price.toString(); // Ensure price is a string
+        const formattedRating = productData.rating.toString(); // Convert rating to string
+
+        setProduct({
+          ...productData,
+          price: formattedPrice,
+          rating: formattedRating, // Ensure rating is a string
+        });
+
         setActiveCategory(productData.category || "Indoor");
         setSelectedImage(productData.images[0]); // Set default image
       } catch (err) {
@@ -72,8 +90,7 @@ const ProductDetailsPage = () => {
         <div className="p-3 lg:p-6">
           <h2 className="h2 normal-case">{product?.name}</h2>
           <p className="mb-3 lg:mb-6">
-            <span></span>
-            <span>{product?.numReviews} Reviews</span>
+            <span>{product.rating} Reviews</span>
           </p>
 
           {/* PLAN CATEGORY */}
@@ -121,7 +138,6 @@ const ProductDetailsPage = () => {
             <Button variant="secondary" className="w-20">
               {quantity}
             </Button>
-            {/* <span className=" text-center"></span> */}
             <Button onClick={handleIncrease} variant="secondary">
               +
             </Button>

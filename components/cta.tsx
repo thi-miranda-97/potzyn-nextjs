@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+
 export default function CTA({
   title,
   description,
@@ -19,8 +20,9 @@ export default function CTA({
   const [error, setError] = useState("");
 
   const { toast } = useToast();
+
   // Function to handle subscription
-  function handleSubscription(e) {
+  function handleSubscription(e: React.FormEvent) {
     e.preventDefault();
     // Simple email validation
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
@@ -42,7 +44,19 @@ export default function CTA({
   }
 
   // Custom renderer for countdown timer
-  const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
+  const renderer = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+  }) => {
     if (completed) {
       return <span className="text-xl font-bold">Offer has ended!</span>;
     } else {
@@ -68,6 +82,7 @@ export default function CTA({
       );
     }
   };
+
   return (
     <section className="my-0 mx-auto w-[80%]">
       <h2 className="h2 text-center mb-2 lg:mb-4">{title}</h2>
@@ -104,10 +119,7 @@ export default function CTA({
               <p className="text-destructive text-sm mb-3 lg:mb-6">{error}</p>
             )}
 
-            <Button
-              type="submit" // Submit form
-              className=""
-            >
+            <Button type="submit" className="">
               Subscribe Now
             </Button>
           </form>
