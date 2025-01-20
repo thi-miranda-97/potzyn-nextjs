@@ -29,6 +29,7 @@ export default function Store() {
   const [rating, setRating] = useState<string | null>("all");
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [categoryOption, setcategoryOption] = useState<string>("all");
 
   // Fetch products based on the filters and pagination
   useEffect(() => {
@@ -55,9 +56,10 @@ export default function Store() {
 
         // Fetch the data from the API
         const result = await getAllProducts({
-          sort: sortOption as "lowest" | "highest" | "rating" | "createdAt", // Explicit type assertion for sort
-          price: formattedPriceRange || undefined, // Ensure it's a valid string or undefined
-          rating: ratingValue ? ratingValue.toString() : undefined, // Ensure rating is a string or undefined
+          sort: sortOption as "new" | "favorite" | "best-deals" | "all",
+          price: formattedPriceRange || undefined,
+          rating: ratingValue ? ratingValue.toString() : undefined,
+          category: categoryOption as "indoor" | "outdoor" | "flowers" | "all",
           page: page,
           limit: 15,
         });
@@ -71,7 +73,7 @@ export default function Store() {
     };
 
     fetchData();
-  }, [sortOption, priceRange, rating, page]); // Re-fetch when filters or page changes
+  }, [sortOption, priceRange, rating, page, categoryOption]); // Re-fetch when filters or page changes
 
   // Handle page change
   const handlePageChange = (newPage: number) => {
@@ -90,23 +92,53 @@ export default function Store() {
     setRating(value === "all" ? null : value);
   };
 
+  // Handle rating filter change
+  const handleCategoryChange = (value: string) => {
+    setcategoryOption(value);
+  };
+
   // Handle sort option change
   const handleSortChange = (value: string) => {
-    if (value === "price") {
-      setSortOption("lowest"); // Ensure this uses "lowest" for ascending price
-    } else {
+    // Ensure valid sort option
+    if (["new", "favorite", "best-deals", "all"].includes(value)) {
       setSortOption(value);
+    } else {
+      setSortOption("all"); // Default to "all" if an invalid value is selected
     }
   };
+  const visiblePages = [
+    ...new Set([1, page - 1, page, page + 1, totalPages]),
+  ].filter((p) => p > 0 && p <= totalPages);
 
   return (
     <section className="mt-20 lg:mt-32">
       <div className="flex-between flex-col lg:flex-row mb-5 lg:mb-10">
         <h2 className="h2 mb-4 lg:mb-0">Our Products</h2>
         <div className="flex-between gap-2 lg:gap-4">
+          {/* Category Filter */}
+          <Select onValueChange={handleCategoryChange}>
+            <SelectTrigger className="w-24 lg:w-[180px]">
+              <SelectValue placeholder="Category" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem key="all" value="all">
+                All
+              </SelectItem>
+              <SelectItem key="indoor" value="indoor">
+                Indoor
+              </SelectItem>
+              <SelectItem key="outdoor" value="outdoor">
+                Outdoor
+              </SelectItem>
+              <SelectItem key="flowers" value="flowers">
+                Flowers
+              </SelectItem>
+            </SelectContent>
+          </Select>
+
           {/* Price filter */}
           <Select onValueChange={handlePriceChange}>
-            <SelectTrigger className="w-28 lg:w-[180px]">
+            <SelectTrigger className="w-24 lg:w-[180px]">
               <SelectValue placeholder="Price ($)" />
             </SelectTrigger>
             <SelectContent>
@@ -133,7 +165,7 @@ export default function Store() {
 
           {/* Rating filter */}
           <Select onValueChange={handleRatingChange}>
-            <SelectTrigger className="w-28 lg:w-[180px]">
+            <SelectTrigger className="w-24 lg:w-[180px]">
               <SelectValue placeholder="Rating" />
             </SelectTrigger>
             <SelectContent>
@@ -154,18 +186,21 @@ export default function Store() {
 
           {/* Sorting option */}
           <Select onValueChange={handleSortChange}>
-            <SelectTrigger className="w-28 lg:w-[180px]">
+            <SelectTrigger className="w-24 lg:w-[180px]">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem key="createdAt" value="createdAt">
-                New to Old
+              <SelectItem key="all" value="all">
+                All
               </SelectItem>
-              <SelectItem key="rating" value="rating">
-                High rating to Low
+              <SelectItem key="new" value="new">
+                New Arrivals
               </SelectItem>
-              <SelectItem key="price" value="price">
-                Affordable to Expensive
+              <SelectItem key="favorite" value="favorite">
+                Top Reviews
+              </SelectItem>
+              <SelectItem key="best-deals" value="best-deals">
+                Best Deals
               </SelectItem>
             </SelectContent>
           </Select>
@@ -194,19 +229,15 @@ export default function Store() {
           </PaginationItem>
 
           {/* Page numbers */}
-          {[...Array(totalPages).keys()].map((i) => (
-            <PaginationItem key={i}>
+          {visiblePages.map((p, idx) => (
+            <PaginationItem key={p}>
+              {visiblePages[idx - 1] + 1 < p && <PaginationEllipsis />}
               <PaginationLink
                 href="#"
-                onClick={() => handlePageChange(i + 1)}
-                isActive={page === i + 1}
-                className={
-                  page === i + 1
-                    ? "bg-foreground text-background border-none"
-                    : ""
-                }
+                onClick={() => handlePageChange(p)}
+                isActive={page === p}
               >
-                {i + 1}
+                {p}
               </PaginationLink>
             </PaginationItem>
           ))}

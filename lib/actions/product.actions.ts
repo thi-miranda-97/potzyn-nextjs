@@ -18,14 +18,14 @@ export async function getAllProducts({
   category = "all",
   price,
   rating,
-  sort = "createdAt",
+  sort = "all",
   page = 1,
   limit = 10,
 }: {
   category?: "indoor" | "outdoor" | "flowers" | "all";
   price?: string;
   rating?: string;
-  sort?: "lowest" | "highest" | "rating" | "createdAt";
+  sort?: "new" | "favorite" | "best-deals" | "all";
   page?: number;
   limit?: number;
 }) {
@@ -58,14 +58,14 @@ export async function getAllProducts({
 
   // Sorting logic
   let orderBy = {};
-  if (sort === "lowest") {
-    orderBy = { price: "asc" };
-  } else if (sort === "highest") {
-    orderBy = { price: "desc" };
-  } else if (sort === "rating") {
-    orderBy = { rating: "desc" };
-  } else if (sort === "createdAt") {
-    orderBy = { createdAt: "desc" };
+  if (sort === "new") {
+    orderBy = { createdAt: "desc" }; // Sort by creation date for "new"
+  } else if (sort === "favorite") {
+    orderBy = { rating: "desc" }; // Sort by rating for "favorite"
+  } else if (sort === "best-deals") {
+    orderBy = { price: "asc" }; // Sort by price for "best-deals"
+  } else if (sort === "all") {
+    orderBy = { createdAt: "desc" }; // Default to sorting by creation date for "all"
   }
 
   // Fetch filtered products with pagination
