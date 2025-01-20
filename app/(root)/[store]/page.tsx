@@ -101,12 +101,12 @@ export default function Store() {
 
   return (
     <section className="mt-20 lg:mt-32">
-      <div className="flex-between mb-5 lg:mb-10">
-        <h2 className="h2">Our Products</h2>
+      <div className="flex-between flex-col lg:flex-row mb-5 lg:mb-10">
+        <h2 className="h2 mb-4 lg:mb-0">Our Products</h2>
         <div className="flex-between gap-2 lg:gap-4">
           {/* Price filter */}
           <Select onValueChange={handlePriceChange}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-28 lg:w-[180px]">
               <SelectValue placeholder="Price ($)" />
             </SelectTrigger>
             <SelectContent>
@@ -133,8 +133,8 @@ export default function Store() {
 
           {/* Rating filter */}
           <Select onValueChange={handleRatingChange}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select Rating" />
+            <SelectTrigger className="w-28 lg:w-[180px]">
+              <SelectValue placeholder="Rating" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem key="all" value="all">
@@ -154,7 +154,7 @@ export default function Store() {
 
           {/* Sorting option */}
           <Select onValueChange={handleSortChange}>
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-28 lg:w-[180px]">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
