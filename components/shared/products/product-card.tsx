@@ -1,5 +1,5 @@
 "use client";
-
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Link from "next/link";
 import Image from "next/image";
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
@@ -12,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types";
 
 export default function ProductCard({ product }: { product: Product }) {
@@ -41,9 +42,15 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.stock > 0 ? (
               <div className="w-full flex-between">
                 <CardHeader className="flex flex-col">
-                  <span className="w-fit bg-primary text-[#f6f6f6] rounded-lg tag px-2 lg:px-3 py-1 lg:py-2">
-                    {product.category}
-                  </span>
+                  <div className="flex flex-row gap-1 lg:gap-2">
+                    <Badge className="">{product.category}</Badge>
+                    <Badge
+                      variant="outline"
+                      className="text-[#f6f6f6] flex-center gap-1"
+                    >
+                      {product.rating} <StarBorderIcon className="w-3 h-auto" />
+                    </Badge>
+                  </div>
                   <CardTitle className="h4 text-[#f6f6f6]">
                     {product.name}
                   </CardTitle>

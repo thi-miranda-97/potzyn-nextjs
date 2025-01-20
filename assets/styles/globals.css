@@ -44,9 +44,6 @@
   .body-2 {
     @apply lg:text-[0.85rem] text-[0.65rem];
   }
-  .tag {
-    @apply text-[0.5rem] lg:text-[0.7rem];
-  }
 
   .hover-scale {
     @apply hover:scale-110;
@@ -63,7 +60,7 @@
   :root {
     --background: #f6f6f6;
     --foreground: #212121;
-    --accent: #ebebeb;
+    --accent: #d4d4d4;
     --accent-foreground: #4d4d4d;
     --primary: #576e51;
     --primary-foreground: #f6f6f6; /* HSL(210 40% 98%) => #f5fbff */

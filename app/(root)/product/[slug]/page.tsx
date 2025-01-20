@@ -1,4 +1,4 @@
-"use client"; // Ensure this is at the top
+"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Product } from "@/types";
+import Rating from "@/components/shared/products/rating";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
@@ -88,9 +89,10 @@ const ProductDetailsPage = () => {
 
         {/* DETAIL */}
         <div className="p-3 lg:p-6">
-          <h2 className="h2 normal-case">{product?.name}</h2>
-          <p className="mb-3 lg:mb-6">
-            <span>{product.rating} Reviews</span>
+          <h2 className="h2 normal-case mb-1 lg:mb-2">{product?.name}</h2>
+          <p className=" flex gap-2 lg:gap-4 mb-3 lg:mb-6">
+            <Rating value={Number(product.rating)} />
+            {product.numReviews} reviews
           </p>
 
           {/* PLAN CATEGORY */}

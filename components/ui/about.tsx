@@ -1,3 +1,5 @@
+"use client";
+
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import AddReactionOutlinedIcon from "@mui/icons-material/AddReactionOutlined";
 import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";

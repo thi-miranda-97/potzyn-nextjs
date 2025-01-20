@@ -13,35 +13,49 @@ import { Product } from "@/types";
 import About from "@/components/ui/about";
 
 const Homepage = () => {
-  // Correctly typed states for products
+  // State for latest and all products
   const [latestProducts, setLatestProducts] = useState<Product[]>([]);
   const [allProducts, setAllProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
+  // Fetch data on mount
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
-        // Fetch latest and all products
+        // Fetch latest products
         const latestData = await getLatestProducts();
-        const allData = await getAllProducts();
+        setLatestProducts(
+          latestData.map((product) => ({
+            ...product,
+            price: product.price?.toString(), // Convert Decimal to string
+            rating: product.rating?.toString(), // Convert Decimal to string
+          }))
+        );
 
-        // Map fetched data to match the Product type
-        const formattedLatestData: Product[] = latestData.map((product) => ({
-          ...product,
-          price: product.price.toString(), // Convert Decimal to string
-          rating: product.rating.toString(), // Convert Decimal to string
-        }));
+        // Fetch all products
+        const allDataResponse = await getAllProducts({
+          category: "all",
+          page: 1,
+          limit: 10,
+        });
 
-        const formattedAllData: Product[] = allData.map((product) => ({
-          ...product,
-          price: product.price.toString(), // Convert Decimal to string
-          rating: product.rating.toString(), // Convert Decimal to string
-        }));
-
-        // Set the state with the formatted data
-        setLatestProducts(formattedLatestData);
-        setAllProducts(formattedAllData);
-      } catch (error) {
-        console.error("Error fetching products:", error);
+        // Assuming `getAllProducts` returns { data: Product[] }
+        setAllProducts(
+          allDataResponse.data.map((product) => ({
+            ...product,
+            price: product.price?.toString(),
+            rating: product.rating?.toString(),
+          }))
+        );
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -49,17 +63,27 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-20 lg:gap-32 mt-20 lg:mt-28">
+    <div className="grid grid-cols-1 gap-20 lg:gap-32 mt-20 lg:mt-32">
       {/* HERO */}
       <Hero />
 
       {/* PRODUCT LIST */}
-      <ProductList
-        data={allProducts}
-        title="Nature's Best in Every Pot: Shop Our Favorites"
-        description="From lush indoor companions to blooming outdoor beauties, explore our top picks that add energy and life to your home."
-        limit={3}
-      />
+      <section id="product-list">
+        <h2 className="h2 uppercase text-center mb-2 lg:mb-4">
+          Nature&apos;s Best in Every Pot: Shop Our Favorites
+        </h2>
+        <p className="body-1 text-center mb-3 lg:mb-6">
+          From lush indoor companions to blooming outdoor beauties, explore our
+          top picks that add energy and life to your home.
+        </p>
+        {loading ? (
+          <p>Loading products...</p>
+        ) : error ? (
+          <p className="text-red-500">{error}</p>
+        ) : (
+          <ProductList data={allProducts} limit={3} />
+        )}
+      </section>
 
       {/* ABOUT US SECTION */}
       <About />
