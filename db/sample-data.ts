@@ -268,60 +268,39 @@ const sampleData = {
       isFeatured: true,
     },
   ],
-  blogs: [
+  blogPosts: [
     {
-      title: "Top Gardening Tips for Beginners",
-      sub: "Sub title for the blog post",
-      content: "Content of the blog post...",
-      authorId: "potzyn@example.com",
-      tagId: "Gardening Tips",
+      title: "How to Care for Ficus",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      published: true,
+      featured: true,
+      tag: "Indoor Care",
+      sub: "Indoor Plant Care",
+      content: "Ficus is one of the most popular indoor plants...",
     },
     {
-      title: "Top Gardening Tips for Beginners",
-      sub: "Sub title for the blog post",
-      content: "Content of the blog post...",
-      authorId: "potzyn@example.com",
-      tagId: "Gardening Tips",
-    },
-    {
-      title: "Top Gardening Tips for Beginners",
-      sub: "Sub title for the blog post",
-      content: "Content of the blog post...",
-      author: "potzyn@example.com",
-      tagId: "Gardening Tips",
-    },
-  ],
-  tags: [
-    {
-      name: "Indoor Care",
-    },
-    {
-      name: "Outdoor Care",
-    },
-    {
-      name: "Flower Care",
-    },
-    {
-      name: "Pest Control",
-    },
-    {
-      name: "Plant Styling",
-    },
-    {
-      name: "Fertilizing",
-    },
-    {
-      name: "Repotting Tips",
-    },
-    {
-      name: "Plant Health",
-    },
-    {
-      name: "Watering Tips",
-    },
-    {
-      name: "Gardening Tips",
+      title: "Rose Care Guide",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      published: true,
+      featured: true,
+      tag: "Outdoor Care",
+      sub: "Outdoor Plant Care",
+      content: "Roses need proper sunlight and regular watering...",
     },
   ],
+  // tags: [
+  //   { name: "Indoor Care" },
+  //   { name: "Outdoor Care" },
+  //   { name: "Flower Care" },
+  //   { name: "Pest Control" },
+  //   { name: "Plant Styling" },
+  //   { name: "Fertilizing" },
+  //   { name: "Repotting Tips" },
+  //   { name: "Plant Health" },
+  //   { name: "Watering Tips" },
+  //   { name: "Gardening Tips" },
+  // ],
 };
 export default sampleData;

@@ -35,29 +35,24 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "BlogPost" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "image" TEXT,
-    "authorId" UUID NOT NULL,
-    "tagId" UUID NOT NULL,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "published" BOOLEAN NOT NULL DEFAULT false,
-    "isFeatured" BOOLEAN NOT NULL DEFAULT false,
-    "description" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL,
+    "featured" BOOLEAN NOT NULL,
+    "sub" TEXT NOT NULL,
     "content" TEXT NOT NULL,
+    "userId" UUID NOT NULL,
+    "tagId" TEXT,
 
     CONSTRAINT "BlogPost_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "Tag" (
-    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "description" TEXT,
-    "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
 );
@@ -110,20 +105,11 @@ CREATE UNIQUE INDEX "user_email_idx" ON "User"("email");
 -- CreateIndex
 CREATE INDEX "User_email_idx" ON "User"("email");
 
--- CreateIndex
-CREATE UNIQUE INDEX "blog_post_slug_idx" ON "BlogPost"("slug");
-
--- CreateIndex
-CREATE INDEX "BlogPost_slug_idx" ON "BlogPost"("slug");
-
--- CreateIndex
-CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
+-- AddForeignKey
+ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

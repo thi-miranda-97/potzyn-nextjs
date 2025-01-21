@@ -1,11 +1,18 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-generator client {
-  provider = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
-}
+
 
 model Product {
   id            String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
@@ -41,22 +48,29 @@ model User {
   blogPosts     BlogPost[]
   @@index([email])
 }
-model Tag {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name          String   @unique
-  blogPosts     BlogPost[]
+model BlogPost {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title     String
+  createdAt DateTime @default(now()) @db.Timestamp(6)
+  updatedAt DateTime @updatedAt
+  published Boolean
+  featured  Boolean
+  sub       String
+  content   String
+  userId    String  @db.Uuid
+  tagId     String  
+  tag       Tag     @relation(fields: [tagId], references: [id])
+
+  user      User     @relation(fields: [userId], references: [id])
 }
 
-model BlogPost {
-  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title         String
-  sub           String
-  content       String
-  authorId      String
-  tagId         String
-  author        User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  tag           Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+model Tag {
+  id    String   @id @default(uuid())
+  name  String
+  posts BlogPost[]
 }
+
+
 model Account {
   userId            String  @db.Uuid
   type              String
@@ -94,4 +108,3 @@ model VerificationToken {
   @@id([identifier, token])
  
 }
-
