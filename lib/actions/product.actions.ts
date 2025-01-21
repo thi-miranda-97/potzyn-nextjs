@@ -59,21 +59,21 @@ export async function getAllProducts({
   // Sorting logic
   let orderBy = {};
   if (sort === "new") {
-    orderBy = { createdAt: "desc" }; // Sort by creation date for "new"
+    orderBy = { createdAt: "desc" };
   } else if (sort === "favorite") {
-    orderBy = { rating: "desc" }; // Sort by rating for "favorite"
+    orderBy = { rating: "desc" };
   } else if (sort === "best-deals") {
-    orderBy = { price: "asc" }; // Sort by price for "best-deals"
+    orderBy = { price: "asc" };
   } else if (sort === "all") {
-    orderBy = { createdAt: "desc" }; // Default to sorting by creation date for "all"
+    orderBy = { createdAt: "desc" };
   }
 
   // Fetch filtered products with pagination
   const data = await prisma.product.findMany({
     where: filters,
-    orderBy, // Apply the sorting order dynamically
-    skip: (page - 1) * limit, // Pagination: skip products from previous pages
-    take: limit, // Limit the number of products per page
+    orderBy,
+    skip: (page - 1) * limit,
+    take: limit,
   });
 
   // Count the total number of matching products for pagination
@@ -92,14 +92,4 @@ export async function getProductBySlug(slug: string) {
   return await prisma.product.findFirst({
     where: { slug: slug },
   });
-}
-
-// Get all categories
-export async function getAllCategories() {
-  const data = await prisma.product.groupBy({
-    by: ["category"],
-    _count: true,
-  });
-
-  return data;
 }

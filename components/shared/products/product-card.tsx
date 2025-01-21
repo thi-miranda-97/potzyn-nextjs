@@ -48,7 +48,8 @@ export default function ProductCard({ product }: { product: Product }) {
                       variant="outline"
                       className="text-[#f6f6f6] flex-center gap-1"
                     >
-                      {product.rating} <StarBorderIcon className="w-3 h-auto" />
+                      {product.rating}{" "}
+                      <StarBorderIcon className="w-[12px] lg:w-4 h-auto" />
                     </Badge>
                   </div>
                   <CardTitle className="h4 text-[#f6f6f6]">
