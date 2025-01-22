@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+
 import { useState, useEffect } from "react";
 import {
   getLatestProducts,
@@ -8,10 +10,10 @@ import ProductList from "@/components/shared/products/product-list";
 import Hero from "@/components/hero";
 import NewArrival from "@/components/new-arrival";
 import CTA from "@/components/cta";
-import { Product, Blog } from "@/types";
+import { Product } from "@/types";
 import About from "@/components/ui/about";
 import BlogList from "@/components/shared/blog/blog-list";
-import { getFeaturedBlogs } from "@/lib/actions/blog.actions";
+import { FeaturedBlog, getFeaturedBlogs } from "@/lib/actions/blog.actions";
 const Homepage = () => {
   // State for latest and all products
   const [latestProducts, setLatestProducts] = useState<Product[]>([]);
@@ -19,7 +21,7 @@ const Homepage = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  const [featuredBlogs, setFeaturedBlogs] = useState<Blog[]>([]);
+  const [featuredBlogs, setFeaturedBlogs] = useState<FeaturedBlog[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState<boolean>(true);
   const [errorBlogs, setErrorBlogs] = useState<string | null>(null);
 
@@ -132,8 +134,25 @@ const Homepage = () => {
         ) : errorBlogs ? (
           <p className="text-red-500">{errorBlogs}</p>
         ) : (
-          <BlogList data={featuredBlogs} limit={3} />
+          <BlogList
+            data={featuredBlogs.map((blog) => ({
+              ...blog,
+              content: "",
+              published: false,
+              featured: true,
+              createdAt: new Date(),
+              updatedAt: new Date(),
+            }))}
+            limit={3}
+          />
         )}
+
+        <Link
+          href="/blog"
+          className="flex-center body-2 text-accent-foreground "
+        >
+          Read more tips
+        </Link>
       </section>
 
       {/* CTA SECTION */}

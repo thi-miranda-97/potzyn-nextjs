@@ -15,11 +15,7 @@ export type Blog = z.infer<typeof insertBlogSchema> & {
   title: string;
   sub: string;
   images: string;
-  tag: string;
+  tag?: string;
   createdAt: Date;
   updatedAt: Date;
 };
-// title: string;
-// sub: string;
-// content: string;
-// tag: string;
