@@ -1,6 +1,6 @@
 "use client";
 import ModeToggleTheme from "./mode-toggle";
-import User from "./user";
+import UserProfile from "./user-profile";
 import Search from "./search";
 import Cart from "./cart";
 import {
@@ -14,7 +14,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import { Button } from "@/components/ui/button";
 
 export default function Menu() {
   const pathname = usePathname(); // Get the current path
@@ -26,13 +25,11 @@ export default function Menu() {
         <ModeToggleTheme />
         <Cart />
         <Search />
-        <User />
+        <UserProfile />
         <nav className="md:hidden">
           <Sheet>
             <SheetTrigger className="align-middle">
-              <Button variant="ghost">
-                <MenuIcon />
-              </Button>
+              <MenuIcon />
             </SheetTrigger>
             <SheetContent>
               <SheetTitle>Menu</SheetTitle>

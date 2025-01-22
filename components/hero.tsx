@@ -9,11 +9,13 @@ export default function Hero() {
     <section className="grid grid-cols-1 justify-start">
       <div className="flex justify-start items-start lg:flex-between flex-col lg:flex-row mb-5 lg:mb-10">
         <h1 className="h1 mb-2 lg:mb-none">Grow Joy, One Leaf at a Time</h1>
-        <Button className="px-2 lg:px-4 py-1 lg:py-2 uppercase">
-          <Link href="/store">
-            Shop Now <DoubleArrowIcon />
-          </Link>
-        </Button>
+        <div>
+          <Button className="px-2 lg:px-4 py-1 lg:py-2 uppercase">
+            <Link href="/store">
+              Shop Now <DoubleArrowIcon />
+            </Link>
+          </Button>
+        </div>
       </div>
       <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[2fr_1fr_1fr] justify-start item-start gap-4">
         <div className="grid-between grid-cols-1 col-span-2 lg:col-span-1 gap-2 lg:gap-4">
@@ -32,11 +34,13 @@ export default function Hero() {
               </p>
               <div className="flex-between grid-cols-2">
                 <p className="body-2 text-gray-500">collection</p>
-                <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
-                  <Link className="" href="#product-list">
-                    <CallMadeIcon />
-                  </Link>
-                </Button>
+                <div>
+                  <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
+                    <Link className="" href="#product-list">
+                      <CallMadeIcon />
+                    </Link>
+                  </Button>
+                </div>
               </div>
             </div>
 
@@ -56,11 +60,13 @@ export default function Hero() {
             </p>
             <div className="flex-between grid-cols-2">
               <p className="body-2 text-gray-500">blog tips</p>
-              <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
-                <Link className="" href="#blog-list">
-                  <CallMadeIcon />
-                </Link>
-              </Button>
+              <div>
+                <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
+                  <Link className="" href="#blog-list">
+                    <CallMadeIcon />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
           <Image
@@ -86,11 +92,13 @@ export default function Hero() {
             </p>
             <div className="flex-between grid-cols-2">
               <p className="body-2 text-gray-500">new arrival</p>
-              <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
-                <Link className="" href="#new-arrival">
-                  <CallMadeIcon />
-                </Link>
-              </Button>
+              <div>
+                <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
+                  <Link className="" href="#new-arrival">
+                    <CallMadeIcon />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>

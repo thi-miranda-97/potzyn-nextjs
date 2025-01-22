@@ -26,31 +26,33 @@ export default function BlogItem({ blog }: { blog: Blog }) {
             priority={true}
             className="w-full h-full"
           />
-          {/* Gradient Overlay */}
-          <CardContent
-            className={`flex flex-col justify-end p-3 lg:p-6 absolute inset-0 ${
-              blog
-                ? "bg-gradient-to-t from-black/70 to-transparent items-end"
-                : ""
-            } `}
-          >
-            <CardHeader className="flex jus flex-col">
-              <div className="mb-2 lg:mb-4">
-                <Badge className="">{blog.tag}</Badge>
-              </div>
-              <CardTitle className="h4 text-[#f6f6f6]">{blog.title}</CardTitle>
-              <CardDescription className="text-[#c7c7c7] body-2">
-                {blog.sub.length > 100
-                  ? `${blog.sub.slice(0, 100)}...`
-                  : blog.sub}
-              </CardDescription>
-            </CardHeader>
-
-            <Link href={`/blog/${blog.id}`} className="link body-2">
-              Read more
-            </Link>
-          </CardContent>
         </Link>
+
+        {/* Content */}
+        <CardContent
+          className={`flex flex-col justify-end p-3 lg:p-6 absolute inset-0 ${
+            blog
+              ? "bg-gradient-to-t from-black/70 to-transparent items-end"
+              : ""
+          } `}
+        >
+          <CardHeader className="flex jus flex-col">
+            <div className="mb-2 lg:mb-4">
+              <Badge className="">{blog.tag}</Badge>
+            </div>
+            <CardTitle className="h4 text-[#f6f6f6]">{blog.title}</CardTitle>
+            <CardDescription className="text-[#c7c7c7] body-2">
+              {blog.sub.length > 100
+                ? `${blog.sub.slice(0, 100)}...`
+                : blog.sub}
+            </CardDescription>
+          </CardHeader>
+
+          {/* "Read more" Link */}
+          <Link href={`/blog/${blog.id}`} className="link body-2">
+            Read more
+          </Link>
+        </CardContent>
       </div>
     </Card>
   );

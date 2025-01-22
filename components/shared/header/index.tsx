@@ -7,9 +7,7 @@ export default function Header() {
     <header className="w-full fixed bg-accent shadow-md opacity-95 z-[2]">
       <nav className="wrapper flex-between">
         <Logo />
-
         <NavLink />
-
         <Menu />
       </nav>
     </header>
