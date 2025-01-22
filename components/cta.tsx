@@ -62,20 +62,20 @@ export default function CTA({
       return <span className="text-xl font-bold">Offer has ended!</span>;
     } else {
       return (
-        <div className="flex justify-start gap-6 mb-5 lg:mb-10">
-          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
+        <div className="grid-between grid-cols-4 justify-start gap-6 mb-5 lg:mb-10">
+          <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1 ">Days</span>
             <h3 className="h3">{days}</h3>
           </div>
-          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
+          <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Hours</span>
             <h3 className="h3">{hours}</h3>
           </div>
-          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
+          <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Minutes</span>
             <h3 className="h3">{minutes}</h3>
           </div>
-          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
+          <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Seconds</span>
             <h3 className="h3">{seconds}</h3>
           </div>
