@@ -1,4 +1,5 @@
 "use client";
+
 import ModeToggleTheme from "./mode-toggle";
 import UserProfile from "./user-profile";
 import Search from "./search";
@@ -17,8 +18,10 @@ import classNames from "classnames";
 
 export default function Menu() {
   const pathname = usePathname(); // Get the current path
+
   // Function to check if the link is active
   const isActive = (path: string) => pathname === path;
+
   return (
     <>
       <div className="flex justify-end gap-2 lg:gap-4">
@@ -34,7 +37,7 @@ export default function Menu() {
             <SheetContent>
               <SheetTitle>Menu</SheetTitle>
               <SheetDescription>
-                <nav className="flex-col flex-center gap-10 mt-10 md:hidden ">
+                <nav className="flex-col flex-center gap-10 mt-10 md:hidden">
                   {[
                     { path: "/", label: "Home" },
                     { path: "/store", label: "Our Store" },

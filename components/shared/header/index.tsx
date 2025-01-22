@@ -1,3 +1,5 @@
+"use client";
+
 import NavLink from "./navlink";
 import Menu from "./menu";
 
