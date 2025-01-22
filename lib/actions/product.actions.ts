@@ -31,6 +31,7 @@ export async function getAllProducts({
 }) {
   // Construct query filters
   const categoryFilter = category && category !== "all" ? { category } : {};
+  console.log(categoryFilter);
   const priceFilter =
     price && price !== "all"
       ? {

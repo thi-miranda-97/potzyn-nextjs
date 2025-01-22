@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -50,6 +51,7 @@ model User {
 }
 model BlogPost {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  images    String
   title     String
   createdAt DateTime @default(now()) @db.Timestamp(6)
   updatedAt DateTime @updatedAt

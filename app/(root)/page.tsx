@@ -7,17 +7,40 @@ import {
 import ProductList from "@/components/shared/products/product-list";
 import Hero from "@/components/hero";
 import NewArrival from "@/components/new-arrival";
-import BlogList from "@/components/shared/blog/blog-list";
 import CTA from "@/components/cta";
-import { Product } from "@/types";
+import { Product, Blog } from "@/types";
 import About from "@/components/ui/about";
-
+import BlogList from "@/components/shared/blog/blog-list";
+import { getFeaturedBlogs } from "@/lib/actions/blog.actions";
 const Homepage = () => {
   // State for latest and all products
   const [latestProducts, setLatestProducts] = useState<Product[]>([]);
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+  const [featuredBlogs, setFeaturedBlogs] = useState<Blog[]>([]);
+  const [loadingBlogs, setLoadingBlogs] = useState<boolean>(true);
+  const [errorBlogs, setErrorBlogs] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchFeaturedBlogs = async () => {
+      setLoadingBlogs(true);
+      setErrorBlogs(null);
+
+      try {
+        const blogs = await getFeaturedBlogs();
+        setFeaturedBlogs(blogs); // Blogs are of type FeaturedBlog[]
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+        setErrorBlogs("Failed to load blogs. Please try again later.");
+      } finally {
+        setLoadingBlogs(false);
+      }
+    };
+
+    fetchFeaturedBlogs();
+  }, []);
 
   // Fetch data on mount
   useEffect(() => {
@@ -97,7 +120,21 @@ const Homepage = () => {
       />
 
       {/* BLOG */}
-      <BlogList />
+      <section id="blog-list">
+        <h2 className="h2 uppercase text-center mb-2 lg:mb-4">
+          Gardening Tips & Ideas
+        </h2>
+        <p className="body-1 text-center mb-3 lg:mb-6">
+          Discover expert tips and tricks to elevate your gardening game.
+        </p>
+        {loadingBlogs ? (
+          <p>Loading blogs...</p>
+        ) : errorBlogs ? (
+          <p className="text-red-500">{errorBlogs}</p>
+        ) : (
+          <BlogList data={featuredBlogs} limit={3} />
+        )}
+      </section>
 
       {/* CTA SECTION */}
       <CTA

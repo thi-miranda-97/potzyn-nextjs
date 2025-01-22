@@ -6,3 +6,5 @@ export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
 export const LATEST_PRODUCTS_LIMIT =
   Number(process.env.LATEST_PRODUCTS_LIMIT) || 12;
+export const FEATURED_BLOGS_LIMIT =
+  Number(process.env.FEATURED_BLOGS_LIMIT) || 3;

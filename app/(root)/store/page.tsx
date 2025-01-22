@@ -95,6 +95,7 @@ export default function Store() {
   // Handle rating filter change
   const handleCategoryChange = (value: string) => {
     setcategoryOption(value);
+    console.log("Selected category:", value);
   };
 
   // Handle sort option change

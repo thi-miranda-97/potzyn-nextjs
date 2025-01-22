@@ -18,3 +18,13 @@ export const insertProductSchema = z.object({
   stock: z.coerce.number(),
   isFeatured: z.boolean(),
 });
+
+export const insertBlogSchema = z.object({
+  title: z.string().min(10, "Name must be at least 10 characters"),
+  sub: z.string().min(3, "Sub must be at least 3 characters"),
+  tag: z.string().min(3, "Tag must be at least 3 characters"),
+  content: z.string().min(3, "Content must be at least 3 characters"),
+  images: z.string().min(1, "Product must have at least one image"),
+  published: z.boolean(),
+  featured: z.boolean(),
+});

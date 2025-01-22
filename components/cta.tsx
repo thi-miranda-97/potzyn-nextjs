@@ -16,7 +16,7 @@ export default function CTA({
   description?: string;
 }) {
   // Target date for the giveaway deadline
-  const targetDate = new Date("2025-10-05T23:59:59").getTime();
+  const targetDate = new Date("2027-10-05T23:59:59").getTime();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
@@ -62,22 +62,22 @@ export default function CTA({
       return <span className="text-xl font-bold">Offer has ended!</span>;
     } else {
       return (
-        <div className="flex justify-center gap-6 mb-5 lg:mb-10">
-          <div className="flex flex-col items-center">
-            <span className="body-1">Days</span>
-            <span className="h3">{days}</span>
+        <div className="flex justify-start gap-6 mb-5 lg:mb-10">
+          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
+            <span className="body-1 ">Days</span>
+            <h3 className="h3">{days}</h3>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Hours</span>
-            <span className="h3">{hours}</span>
+            <h3 className="h3">{hours}</h3>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Minutes</span>
-            <span className="h3">{minutes}</span>
+            <h3 className="h3">{minutes}</h3>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Seconds</span>
-            <span className="h3">{seconds}</span>
+            <h3 className="h3">{seconds}</h3>
           </div>
         </div>
       );
@@ -85,46 +85,42 @@ export default function CTA({
   };
 
   return (
-    <section className="my-0 mx-auto w-[80%]">
-      <h2 className="h2 text-center mb-2 lg:mb-4">{title}</h2>
-      <p className="body-1 mb-5 lg:mb-10 text-center">{description}</p>
-
-      <div className="grid-between grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10">
+    <section className="my-0 mx-auto w-full grid-between grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-6">
+      <div>
+        <h2 className="h2 mb-2 lg:mb-4">{title}</h2>
+        <p className="body-1 mb-5 lg:mb-10">{description}</p>
+        <h4 className="h4 mb-3 lg:mb-6">Hurry! Offer ends in:</h4>
         {/* Countdown Timer */}
-        <div className="text-center">
-          <h4 className="h4 border border-foreground rounded-lg mb-3 lg:mb-6">
-            Hurry! Offer ends in:
-          </h4>
-          <div className="text-xl font-bold">
-            <Countdown date={targetDate} renderer={renderer} />
-          </div>
 
-          {/* Subscription Section */}
-          <form
-            onSubmit={handleSubscription}
-            className="max-w-xl mx-auto text-center mb-5 lg:mb-10"
-          >
-            <h4 className="h4 border border-foreground rounded-lg mb-2 lg:mb-4">
-              Subscribe to Enter
-            </h4>
-            <Input
-              type={email}
-              name="email"
-              id="subscribe"
-              placeholder="potzyn@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className=""
-            />
-            {error && (
-              <p className="text-destructive text-sm mb-3 lg:mb-6">{error}</p>
-            )}
+        <Countdown
+          date={targetDate}
+          renderer={renderer}
+          className="font-bold"
+        />
 
-            <Button type="submit" className="">
-              Subscribe Now
-            </Button>
-          </form>
-        </div>
+        <form
+          onSubmit={handleSubscription}
+          className="max-w-xl mx-auto mb-5 lg:mb-10"
+        >
+          <Input
+            type={email}
+            name="email"
+            id="subscribe"
+            placeholder="potzyn@gmail.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className=""
+          />
+          {error && (
+            <p className="text-destructive text-sm mb-3 lg:mb-6">{error}</p>
+          )}
+
+          <Button type="submit" className="">
+            Subscribe Now
+          </Button>
+        </form>
+      </div>
+      <div>
         <Image
           src="/images/sample-products/product-16-1.jpeg"
           alt="CTA image section"

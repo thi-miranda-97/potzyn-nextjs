@@ -35,7 +35,8 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "BlogPost" (
-    "id" TEXT NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
+    "images" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "createdAt" TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -44,7 +45,7 @@ CREATE TABLE "BlogPost" (
     "sub" TEXT NOT NULL,
     "content" TEXT NOT NULL,
     "userId" UUID NOT NULL,
-    "tagId" TEXT,
+    "tagId" TEXT NOT NULL,
 
     CONSTRAINT "BlogPost_pkey" PRIMARY KEY ("id")
 );
@@ -106,7 +107,7 @@ CREATE UNIQUE INDEX "user_email_idx" ON "User"("email");
 CREATE INDEX "User_email_idx" ON "User"("email");
 
 -- AddForeignKey
-ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "BlogPost" ADD CONSTRAINT "BlogPost_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

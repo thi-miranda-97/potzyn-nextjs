@@ -64,9 +64,10 @@ async function main() {
       }
       return {
         title: post.title,
-        createdAt: post.createdAt || new Date(),
-        updatedAt: post.updatedAt || new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
         published: post.published,
+        images: post.images,
         featured: post.featured,
         sub: post.sub,
         content: post.content,

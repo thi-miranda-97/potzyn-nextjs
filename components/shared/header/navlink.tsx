@@ -12,7 +12,7 @@ export default function NavLink() {
   return (
     <>
       {/* Desktop navigation */}
-      <nav className="hidden md:flex gap-4 md:flex-row md:gap-10">
+      <div className="hidden md:flex gap-4 md:flex-row md:gap-10">
         {[
           { path: "/", label: "Home" },
           { path: "/store", label: "Our Store" },
@@ -32,7 +32,7 @@ export default function NavLink() {
             {label}
           </Link>
         ))}
-      </nav>
+      </div>
 
       {/* Mobile navigation */}
     </>
