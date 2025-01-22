@@ -100,7 +100,7 @@ export default function CTA({
 
         <form
           onSubmit={handleSubscription}
-          className="max-w-xl mx-auto mb-5 lg:mb-10"
+          className="max-w-xl mx-auto mb-5 lg:mb-10 flex gap-2 md:gap-4 flex-row"
         >
           <Input
             type={email}
@@ -114,10 +114,11 @@ export default function CTA({
           {error && (
             <p className="text-destructive text-sm mb-3 lg:mb-6">{error}</p>
           )}
-
-          <Button type="submit" className="">
-            Subscribe Now
-          </Button>
+          <div className="">
+            <Button type="submit" className="">
+              Subscribe Now
+            </Button>
+          </div>
         </form>
       </div>
       <div>

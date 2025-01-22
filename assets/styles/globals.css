@@ -54,14 +54,17 @@
   .image {
     @apply rounded-lg w-full h-full;
   }
+  .link {
+    @apply text-accent-foreground pb-[1px] transition-all duration-300 hover:text-primary;
+  }
 }
 
 @layer base {
   :root {
     --background: #f6f6f6;
     --foreground: #212121;
-    --accent: #d4d4d4;
-    --accent-foreground: #4d4d4d;
+    --accent: #ebf1f7;
+    --accent-foreground: #818894;
     --primary: #576e51;
     --primary-foreground: #f6f6f6;
     --secondary: #ebf1f7;
@@ -69,7 +72,7 @@
     --popover: #ffffff;
     --popover-foreground: #1c0d08;
     --muted: #ebf1f7;
-    --muted-foreground: #818894;
+    --muted-foreground: #;
     --destructive: #fa7070;
     --destructive-foreground: #f5fbff;
     --input: #d9e4c1;

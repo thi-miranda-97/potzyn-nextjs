@@ -2,7 +2,7 @@
 import ModeToggleTheme from "./mode-toggle";
 import User from "./user";
 import Search from "./search";
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
+import Cart from "./cart";
 import {
   Sheet,
   SheetContent,
@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import { Button } from "@/components/ui/button";
 
 export default function Menu() {
   const pathname = usePathname(); // Get the current path
@@ -21,15 +22,17 @@ export default function Menu() {
   const isActive = (path: string) => pathname === path;
   return (
     <>
-      <div className="flex justify-end gap-4 lg:gap-8">
+      <div className="flex justify-end gap-2 lg:gap-4">
         <ModeToggleTheme />
-        <LocalMallOutlinedIcon />
+        <Cart />
         <Search />
         <User />
         <nav className="md:hidden">
           <Sheet>
             <SheetTrigger className="align-middle">
-              <MenuIcon />
+              <Button variant="ghost">
+                <MenuIcon />
+              </Button>
             </SheetTrigger>
             <SheetContent>
               <SheetTitle>Menu</SheetTitle>

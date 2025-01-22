@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Blog } from "@/types";
-import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 export default function BlogItem({ blog }: { blog: Blog }) {
   return (
-    <Card className="shadow-md hover:translate-y-[-0.5rem]">
+    <Card className="shadow-md transition-all duration-300 ease-in-out ">
       <div className="p-0 items-start relative">
         <Link className="block object-cover" href={`/blog/${blog.id}`}>
           <Image
@@ -29,14 +28,14 @@ export default function BlogItem({ blog }: { blog: Blog }) {
           />
           {/* Gradient Overlay */}
           <CardContent
-            className={`p-2 lg:p-4 absolute inset-0 flex ${
+            className={`flex flex-col justify-end p-3 lg:p-6 absolute inset-0 ${
               blog
                 ? "bg-gradient-to-t from-black/70 to-transparent items-end"
                 : ""
             } `}
           >
-            <CardHeader className="flex flex-col">
-              <div className="flex flex-row gap-1 lg:gap-2">
+            <CardHeader className="flex jus flex-col">
+              <div className="mb-2 lg:mb-4">
                 <Badge className="">{blog.tag}</Badge>
               </div>
               <CardTitle className="h4 text-[#f6f6f6]">{blog.title}</CardTitle>
@@ -47,12 +46,8 @@ export default function BlogItem({ blog }: { blog: Blog }) {
               </CardDescription>
             </CardHeader>
 
-            <Link
-              href={`/blog/${blog.id}`}
-              className="flex text-[#c7c7c7] gap-1 text- body-2 hover:border-b"
-            >
-              Detail
-              <DoubleArrowIcon className="w-2 h-auto" />
+            <Link href={`/blog/${blog.id}`} className="link body-2">
+              Read more
             </Link>
           </CardContent>
         </Link>

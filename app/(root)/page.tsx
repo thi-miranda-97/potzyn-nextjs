@@ -14,6 +14,8 @@ import { Product } from "@/types";
 import About from "@/components/ui/about";
 import BlogList from "@/components/shared/blog/blog-list";
 import { FeaturedBlog, getFeaturedBlogs } from "@/lib/actions/blog.actions";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+
 const Homepage = () => {
   // State for latest and all products
   const [latestProducts, setLatestProducts] = useState<Product[]>([]);
@@ -146,13 +148,11 @@ const Homepage = () => {
             limit={3}
           />
         )}
-
-        <Link
-          href="/blog"
-          className="flex-center body-2 text-accent-foreground "
-        >
-          Read more tips
-        </Link>
+        <div className="flex-center">
+          <Link href="/blog" className="link text-center">
+            Read more tips <DoubleArrowIcon />
+          </Link>
+        </div>
       </section>
 
       {/* CTA SECTION */}
