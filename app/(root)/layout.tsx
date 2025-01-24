@@ -3,9 +3,9 @@ import Footer from "@/components/footer";
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <div className="flex-between h-screen flex-col">
       <Header />

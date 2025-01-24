@@ -17,7 +17,12 @@ export default function BlogItem({ blog }: { blog: Blog }) {
   return (
     <Card className="shadow-md transition-all duration-300 ease-in-out ">
       <div className="p-0 items-start relative">
-        <Link className="block object-cover" href={`/blog/${blog.id}`}>
+        <Link
+          className="block object-cover"
+          href={`/blog/${blog.id}`}
+          rel="preload"
+          as="fetch"
+        >
           <Image
             src={blog.images}
             alt={blog.title}

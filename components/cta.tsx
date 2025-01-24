@@ -128,6 +128,7 @@ export default function CTA({
           alt="CTA image section"
           width={300}
           height={300}
+          priority={true}
           className="w-full h-auto rounded-lg"
         />
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import ModeToggleTheme from "./mode-toggle";
-import UserProfile from "./user-profile";
+
 import Search from "./search";
 import Cart from "./cart";
 import {
@@ -28,7 +28,7 @@ export default function Menu() {
         <ModeToggleTheme />
         <Cart />
         <Search />
-        <UserProfile />
+        {/* USER BUTTON */}
         <nav className="md:hidden">
           <Sheet>
             <SheetTrigger className="align-middle">
