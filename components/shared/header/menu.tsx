@@ -15,7 +15,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-
+import User from "./user";
 export default function Menu() {
   const pathname = usePathname(); // Get the current path
 
@@ -29,6 +29,7 @@ export default function Menu() {
         <Cart />
         <Search />
         {/* USER BUTTON */}
+        <User />
         <nav className="md:hidden">
           <Sheet>
             <SheetTrigger className="align-middle">
