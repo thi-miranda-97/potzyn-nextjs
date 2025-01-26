@@ -126,8 +126,8 @@ export default function CTA({
         <Image
           src="/images/cta-img.jpeg"
           alt="CTA image section"
-          width={350}
-          height={600}
+          width={400}
+          height={300}
           priority={false}
           className="w-full h-auto rounded-lg"
         />

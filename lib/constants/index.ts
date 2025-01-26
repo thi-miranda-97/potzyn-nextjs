@@ -7,7 +7,7 @@ export const SERVER_URL =
 export const LATEST_PRODUCTS_LIMIT =
   Number(process.env.LATEST_PRODUCTS_LIMIT) || 12;
 export const FEATURED_BLOGS_LIMIT =
-  Number(process.env.FEATURED_BLOGS_LIMIT) || 3;
+  Number(process.env.FEATURED_BLOGS_LIMIT) || 4;
 
 export const signInDefaultValues = {
   email: "",
