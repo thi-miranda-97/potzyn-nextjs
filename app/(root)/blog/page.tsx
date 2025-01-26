@@ -41,21 +41,15 @@ export default function BlogPage() {
           limit: 10,
         });
 
-        // Transform the data to include 'tag' instead of 'tagId'
-        // const blogData = result.data.map((post: BlogPost) => ({
-        //   ...post,
-        //   tag: post.tagId, // Rename 'tagId' to 'tag'
-        // }));
-
-        setAllBlogs(result.data); // Set the correctly typed data
-        setTotalPages(result.totalPages); // Set the total pages
+        setAllBlogs(result.data);
+        setTotalPages(result.totalPages);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       }
     };
 
     fetchData();
-  }, [sortOption, tag, page]); // Re-fetch when filters or page changes
+  }, [sortOption, tag, page]);
 
   // Handle page change
   const handlePageChange = (newPage: number) => {
@@ -74,7 +68,7 @@ export default function BlogPage() {
     if (["new", "popular", "all"].includes(value)) {
       setSortOption(value);
     } else {
-      setSortOption("all"); // Default to "all" if an invalid value is selected
+      setSortOption("all");
     }
   };
 

@@ -37,17 +37,17 @@ const ProductDetailsPage = () => {
         }
 
         // Format price and rating before setting the state
-        const formattedPrice = productData.price.toString(); // Ensure price is a string
-        const formattedRating = productData.rating.toString(); // Convert rating to string
+        const formattedPrice = productData.price.toString();
+        const formattedRating = productData.rating.toString();
 
         setProduct({
           ...productData,
           price: formattedPrice,
-          rating: formattedRating, // Ensure rating is a string
+          rating: formattedRating,
         });
 
         setActiveCategory(productData.category || "Indoor");
-        setSelectedImage(productData.images[0]); // Set default image
+        setSelectedImage(productData.images[0]);
       } catch (err) {
         console.error("Error fetching product:", err);
         setError(true);

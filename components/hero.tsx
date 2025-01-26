@@ -22,8 +22,8 @@ export default function Hero() {
           <Image
             src="/images/feature-1.jpeg"
             alt="a line of potted plants"
-            width={500}
-            height={300}
+            width={600}
+            height={350}
             priority={true}
             className="image"
           />
@@ -50,7 +50,7 @@ export default function Hero() {
               alt="Three leaves"
               width={200}
               height={120}
-              priority={true}
+              priority={false}
               className="image"
             />
           </div>
@@ -76,7 +76,7 @@ export default function Hero() {
             alt="A potted flower"
             width={300}
             height={400}
-            priority={true}
+            priority={false}
             className="image"
           />
         </div>

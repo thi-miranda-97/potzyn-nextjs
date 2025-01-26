@@ -4,7 +4,7 @@ import BlogItem from "./blog-item";
 
 export default function BlogList({
   data = [],
-  limit = 3,
+  limit = 4,
 }: {
   data: Blog[];
   limit?: number;

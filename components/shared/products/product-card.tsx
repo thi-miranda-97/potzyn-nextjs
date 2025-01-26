@@ -14,13 +14,16 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types";
+interface ProductProps {
+  product: Product;
+}
 
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({ product }: ProductProps) {
   return (
     <Card className="shadow-md">
       <div className="p-0 items-center relative">
         <Link
-          className="block object-cover  transition-all duration-300 hover-scale"
+          className="block object-cover transition-all duration-300 hover-scale"
           href={`/product/${product.slug}`}
         >
           <Image

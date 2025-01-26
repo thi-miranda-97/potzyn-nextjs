@@ -134,7 +134,7 @@ const Homepage = () => {
         {loadingBlogs ? (
           <p>Loading blogs...</p>
         ) : errorBlogs ? (
-          <p className="text-red-500">{errorBlogs}</p>
+          <p className="text-destructive">{errorBlogs}</p>
         ) : (
           <BlogList
             data={featuredBlogs.map((blog) => ({
@@ -145,7 +145,7 @@ const Homepage = () => {
               createdAt: new Date(),
               updatedAt: new Date(),
             }))}
-            limit={3}
+            limit={4}
           />
         )}
         <div className="flex-center">

@@ -465,7 +465,7 @@ Aenean volutpat ex ut euismod suscipit. Donec et lacinia elit. Nullam consectetu
       images: "/images/sample-blog/blog-9.jpeg",
 
       published: true,
-      featured: false,
+      featured: true,
       tag: "Flower Care",
       sub: "Want your flowers to bloom longer and look their best? This post will teach you the secrets to proper flower care, including when to prune, how to deadhead, and the best techniques for encouraging vibrant flowers.",
       content: `Vivamus vulputate congue neque iaculis venenatis. Phasellus non elementum dolor, vitae tristique dui. Etiam lacinia purus et tellus consectetur gravida. Aenean tempor turpis in arcu gravida venenatis. Fusce id nisl aliquet magna iaculis ornare. Quisque facilisis turpis non sem pellentesque aliquet. Duis pulvinar rutrum accumsan. Donec a nunc vitae sem hendrerit elementum. Aliquam a nisi turpis. Maecenas auctor, sapien vitae congue malesuada, mauris erat convallis erat, non cursus eros risus vitae eros. Vivamus id risus aliquam, fermentum nunc quis, tristique nibh. Cras tincidunt ac lacus efficitur faucibus. Quisque in tincidunt metus.

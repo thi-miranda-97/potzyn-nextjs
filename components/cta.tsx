@@ -124,11 +124,11 @@ export default function CTA({
       </div>
       <div>
         <Image
-          src="/images/sample-products/product-16-1.jpeg"
+          src="/images/cta-img.jpeg"
           alt="CTA image section"
-          width={300}
-          height={300}
-          priority={true}
+          width={350}
+          height={600}
+          priority={false}
           className="w-full h-auto rounded-lg"
         />
       </div>
