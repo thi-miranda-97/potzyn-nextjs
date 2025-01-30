@@ -5,12 +5,15 @@ export default function AuthLayout({
 }>) {
   return (
     <div
-      className="flex justify-start items-center min-h-screen w-full bg-cover bg-center"
+      className="min-h-screen w-full bg-cover bg-center grid grid-cols-1 lg:grid-cols-2"
       style={{
         backgroundImage: "url('/images/signin-bg.jpg')",
       }}
     >
-      {children}
+      <div className="w-full flex-center bg-[#212121] bg-opacity-50 h-full">
+        {children}
+      </div>
+      <div></div>
     </div>
   );
 }

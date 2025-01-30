@@ -11,17 +11,31 @@ import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import SignInForm from "./sign-in-form";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Sign In",
 };
 
-export default function SignInPage() {
+interface SignInPageProps {
+  searchParams: {
+    callbackUrl?: string;
+  };
+}
+
+export default async function SignInPage({ searchParams }: SignInPageProps) {
+  const { callbackUrl } = searchParams;
+
+  const session = await auth();
+  if (session) {
+    return redirect(callbackUrl || "/");
+  }
   return (
-    <div className="w-full max-w-md mx-8 lg:mx-16">
-      <Card className="bg-transparent text-[#f7f7f7] shadow-lg">
+    <>
+      <Card className="bg-transparent text-[#f7f7f7] shadow-none">
         <CardHeader className="space-y-4">
-          <Link href="/" className="flex-center">
+          <Link href="/" className="">
             <Image
               src="/images/logo.svg"
               alt={`${APP_NAME} logo`}
@@ -33,9 +47,9 @@ export default function SignInPage() {
           </Link>
           <CardTitle className="uppercase">Create new account</CardTitle>
 
-          <CardDescription>
+          <CardDescription className="">
             Already a member?{" "}
-            <Link href="/log-in" className="">
+            <Link href="/log-in" className="link" target="_self">
               Log In
             </Link>
           </CardDescription>
@@ -45,6 +59,6 @@ export default function SignInPage() {
           <SignInForm />
         </CardContent>
       </Card>
-    </div>
+    </>
   );
 }
