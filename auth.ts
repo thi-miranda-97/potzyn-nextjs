@@ -1,7 +1,19 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { prisma } from "./db/prisma";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { compareSync } from "bcrypt-ts-edge";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
+  pages: {
+    signIn: "/sign-in",
+    error: "/sign-in",
+  },
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       credentials: {
@@ -18,18 +30,29 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
           return null;
         }
 
-        const { email, password } = credentials;
+        // Find user in database
+        const user = await prisma.user.findFirst({
+          where: {
+            email: credentials.email as string,
+          },
+        });
 
-        // Example: Replace this with your own user authentication logic
-        const user = await fakeLogin(email, password);
+        // Check if user exists and if the password matches
+        if (user && user?.password) {
+          const isMatch = await compareSync(
+            credentials.password as string,
+            user.password
+          );
 
-        if (user) {
-          // Return the user object if authentication is successful
-          return {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-          };
+          // If password is correct, return user
+          if (isMatch) {
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              role: user.role,
+            };
+          }
         }
 
         // Return null if authentication fails
@@ -37,23 +60,17 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    async session({ session, token, user, trigger }) {
+      if (token?.sub) {
+        session.user.id = token.sub;
+      }
+      if (trigger === "update" && user?.name) {
+        session.user.name = user.name;
+      }
+
+      return session;
+    },
+  },
   secret: process.env.NEXTAUTH_SECRET,
 });
-
-// Example authentication function (replace with your logic)
-async function fakeLogin(email: string, password: string) {
-  // Mock database of users
-  const users = [
-    {
-      id: "1",
-      email: "user@example.com",
-      password: "password123",
-      name: "Test User",
-    },
-  ];
-
-  return (
-    users.find((user) => user.email === email && user.password === password) ||
-    null
-  );
-}
