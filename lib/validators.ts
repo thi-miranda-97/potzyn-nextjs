@@ -49,12 +49,22 @@ export const signUpFormSchema = z
     path: ["confirmPassword"],
   });
 
-// const envSchema = zod.object({
-//   DATABASE_URL: zod.string().nonempty(),
-//   GOOGLE_CLIENT_ID: zod.string().nonempty(),
-//   GOOGLE_CLIENT_SECRET: zod.string().nonempty(),
-//   NEXTAUTH_URL: zod.string().nonempty(),
-//   NEXTAUTH_SECRET: zod.string().nonempty(),
-// });
+//  Cart Schemas
+export const cartItemSchema = z.object({
+  productId: z.string().min(1, "Product is required"),
+  name: z.string().min(1, "Name is required"),
+  slug: z.string().min(1, "Slug is required"),
+  qty: z.number().int().nonnegative("Quantity must be a positive number"),
+  image: z.string().min(1, "Image is required"),
+  price: currency,
+});
 
-// export const env = envSchema.parse(process.env);
+export const insertCartSchema = z.object({
+  items: z.array(cartItemSchema),
+  itemsPrice: currency,
+  totalPrice: currency,
+  shippingPrice: currency,
+  taxPrice: currency,
+  sessionCartId: z.string().min(1, "Session cart id is required"),
+  userId: z.string().optional().nullable(),
+});

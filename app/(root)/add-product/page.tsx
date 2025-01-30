@@ -65,12 +65,6 @@ async function addProduct(formData: FormData) {
 }
 
 export default async function AddProductPage() {
-  // const session = await getServerSession(authOptions);
-
-  // if (!session) {
-  //   redirect("/api/auth/signin?callbackUrl=/add-product");
-  // }
-
   return (
     <div className="mt-20 lg:mt-28 grid-center grid-cols-1 gap-2 lg:gap-4">
       <h2 className="h2 mb-3 lg:mb-6">Add Product</h2>

@@ -12,8 +12,8 @@ export default function Rating({
   caption?: string;
 }) {
   return (
-    <div className="flex gap-2">
-      <div className="flex gap-1">
+    <>
+      <span className="flex gap-1">
         {/* Render 5 stars with conditions for full, half, and empty */}
         {value >= 1 ? (
           <StarIcon className="text-yellow-500" />
@@ -50,9 +50,9 @@ export default function Rating({
         ) : (
           <StarBorderIcon className="text-yellow-500" />
         )}
-      </div>
+      </span>
 
       {caption && <span className="text-sm">{caption}</span>}
-    </div>
+    </>
   );
 }

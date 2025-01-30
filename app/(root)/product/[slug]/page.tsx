@@ -6,9 +6,9 @@ import { getProductBySlug } from "@/lib/actions/product.actions";
 import NotFoundPage from "@/app/not-found";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Product } from "@/types";
 import Rating from "@/components/shared/products/rating";
+import AddToCartButton from "@/components/shared/products/add-to-cart-btn";
 
 const ProductDetailsPage = () => {
   const { slug } = useParams();
@@ -82,6 +82,7 @@ const ProductDetailsPage = () => {
             alt={product.name}
             width={500}
             height={500}
+            priority={true}
             className="w-full rounded-lg"
           />
           <p className="body-1 mt-1 lg:mt-2">{product.description}</p>
@@ -153,18 +154,20 @@ const ProductDetailsPage = () => {
                 {product.price}
               </span>
             </p>
-            <Button
-              variant={`${product.stock > 0 ? "default" : "destructive"}`}
-            >
-              {product.stock > 0 ? (
-                <>
-                  <ShoppingBagOutlinedIcon />
-                  Add to Cart
-                </>
-              ) : (
-                "Sold Out"
-              )}
-            </Button>
+            {product.stock > 0 ? (
+              <AddToCartButton
+                item={{
+                  productId: product.id,
+                  name: product.name,
+                  slug: product.slug,
+                  price: product.price,
+                  qty: 1,
+                  image: selectedImage || product.images![0],
+                }}
+              />
+            ) : (
+              <Button variant="destructive">Sold Out</Button>
+            )}
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function ProductCard({ product }: ProductProps) {
             alt={product.name}
             height={300}
             width={300}
-            priority={true}
+            priority
             className="w-full h-full"
           />
           {/* Gradient Overlay */}
