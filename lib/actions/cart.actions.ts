@@ -1,10 +1,10 @@
-"use server";
+// "use server";
 
-import { CartItem } from "@/types";
+// import { CartItem } from "@/types";
 
-export async function addItemToCart(data: CartItem) {
-  return {
-    success: true,
-    message: "The item added to your cart",
-  };
-}
+// export async function addItemToCart(data: CartItem) {
+//   return {
+//     success: true,
+//     message: "The item added to your cart",
+//   };
+// }
