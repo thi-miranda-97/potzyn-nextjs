@@ -51,7 +51,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
               id: user.id,
               name: user.name,
               email: user.email,
-              role: user.role,
+              role: user.role as "admin" | "user",
             };
           }
         }
@@ -66,12 +66,34 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     async session({ session, token, user, trigger }) {
       if (token?.sub) {
         session.user.id = token.sub;
+        session.user.role = token.role as "admin" | "user";
+        session.user.name = token.name;
       }
       if (trigger === "update" && user?.name) {
         session.user.name = user.name;
       }
 
       return session;
+    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    async jwt({ token, user }: any) {
+      // Assign user fields to token
+      if (user) {
+        token.id = user.id;
+        token.role = user.role as "admin" | "user";
+
+        // If user has no name then use the email
+        if (user.name === "NO_NAME") {
+          token.name = user.email!.split("@")[0];
+
+          // Update database to reflect the token name
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { name: token.name },
+          });
+        }
+      }
+      return token;
     },
   },
   secret: process.env.NEXTAUTH_SECRET,

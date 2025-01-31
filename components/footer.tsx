@@ -1,7 +1,7 @@
 "use client";
 
 import Logo from "./shared/header/logo";
-import NavLink from "./shared/header/navlink";
+import NavLink from "./shared/header/navlink-desktop";
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import XIcon from "@mui/icons-material/X";

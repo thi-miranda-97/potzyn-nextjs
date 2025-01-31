@@ -1,17 +1,15 @@
-"use client";
-
-import NavLink from "./navlink";
 import Menu from "./menu";
 
 import Logo from "./logo";
+import NavLinkDesktop from "./navlink-desktop";
 export default function Header() {
   return (
     <header className="w-full fixed bg-accent shadow-md opacity-95 z-[2]">
-      <nav className="wrapper flex-between">
+      <div className="wrapper flex-between">
         <Logo />
-        <NavLink />
+        <NavLinkDesktop />
         <Menu />
-      </nav>
+      </div>
     </header>
   );
 }

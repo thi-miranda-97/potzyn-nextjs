@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
 
-export default function NavLink() {
+export default function NavLinkDesktop() {
   const pathname = usePathname(); // Get the current path
   // Function to check if the link is active
   const isActive = (path: string) => pathname === path;

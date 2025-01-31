@@ -6,19 +6,18 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { APP_NAME } from "@/lib/constants";
-
+import SignUpForm from "./sign-up-form";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import SignInForm from "./sign-in-form";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Sign In",
+  title: "Sign Up",
 };
 
-const SignInPage = async (props: {
+const SignUpPage = async (props: {
   searchParams: Promise<{
     callbackUrl: string;
   }>;
@@ -43,22 +42,22 @@ const SignInPage = async (props: {
               className=""
             />
           </Link>
-          <CardTitle className="uppercase">Welcome back</CardTitle>
+          <CardTitle className="uppercase">Create an account</CardTitle>
 
           <CardDescription className="">
-            Don&apos;t have an account{" "}
-            <Link href="/sign-up" className="link" target="_self">
-              Sign Up
+            Already a member?{" "}
+            <Link href="/sign-in" className="link" target="_self">
+              Sign In
             </Link>
           </CardDescription>
         </CardHeader>
 
         <CardContent className="space-y-4">
-          <SignInForm />
+          <SignUpForm />
         </CardContent>
       </Card>
     </>
   );
 };
 
-export default SignInPage;
+export default SignUpPage;
