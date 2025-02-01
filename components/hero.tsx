@@ -50,7 +50,7 @@ export default function Hero() {
               alt="Three leaves"
               width={200}
               height={120}
-              priority={false}
+              priority={true}
               className="image"
             />
           </div>
@@ -76,7 +76,7 @@ export default function Hero() {
             alt="A potted flower"
             width={300}
             height={400}
-            priority={false}
+            priority={true}
             className="image"
           />
         </div>

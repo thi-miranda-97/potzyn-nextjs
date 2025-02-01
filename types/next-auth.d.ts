@@ -1,9 +1,27 @@
 import { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
-  export interface Session {
+  interface Session {
     user: {
-      role: string;
+      id: string;
+      role?: "admin" | "user";
     } & DefaultSession["user"];
+  }
+  interface User {
+    id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    role?: "admin" | "user";
+    confirmPassword?: string | null;
+  }
+  interface CartItem {
+    productId: string;
+    name: string;
+    slug: string;
+    price: string;
+    qty: number;
+    image: string;
+    stock: number;
   }
 }
