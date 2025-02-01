@@ -1,4 +1,4 @@
-import FormSubmitButton from "@/components/shared/form-submit-button";
+import FormSubmitButton from "@/components/admin/form-submit-button";
 import { prisma } from "@/db/prisma";
 // import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";

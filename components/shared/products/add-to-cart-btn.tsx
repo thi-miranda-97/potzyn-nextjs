@@ -3,11 +3,11 @@
 import { Cart, CartItem } from "@/types";
 import { Button } from "@/components/ui/button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { useTransition } from "react";
+import { useTransition, useState, useEffect } from "react"; // Add useEffect
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { addItemToCart, removeItemFromCart } from "@/lib/actions/cart.actions";
+import { addItemToCart } from "@/lib/actions/cart.actions"; // Only use addItemToCart
 import CircularProgress from "@mui/material/CircularProgress";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
@@ -21,119 +21,79 @@ export default function AddToCartButton({ item, cart }: AddToCartButtonProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
+  const [quantity, setQuantity] = useState(item.qty || 1); // Initialize with item.qty or 1
 
   // Check if the item exists in the cart
   const existItem = cart?.items.find((x) => x.productId === item.productId);
 
-  // Handle adding to cart
+  // Initialize quantity based on existItem
+  useEffect(() => {
+    if (existItem) {
+      setQuantity(existItem.qty); // Set quantity to the existing item's quantity
+    }
+  }, [existItem]);
+
+  // Handle updating the cart when the user clicks "Update Cart"
   const handleAddToCart = async () => {
     startTransition(async () => {
-      // If the item exists in the cart, update the quantity
-      if (existItem) {
-        const updatedItem = { ...item, qty: existItem.qty + 1 };
-        const res = await addItemToCart(updatedItem);
+      // Create a new item object with the updated quantity
+      const updatedItem = { ...item, qty: quantity };
 
-        if (!res.success) {
-          toast({
-            variant: "destructive",
-            description: res.message,
-          });
-          return;
-        }
+      const res = await addItemToCart(updatedItem); // Pass the updated item
 
+      if (!res.success) {
         toast({
+          variant: "destructive",
           description: res.message,
-          action: (
-            <ToastAction
-              className="bg-primary text-white hover:bg-gray-800"
-              altText="Go To Cart"
-              onClick={() => router.push("/cart")}
-            >
-              Go To Cart
-            </ToastAction>
-          ),
         });
-      } else {
-        // If the item is not in the cart, add it with the selected quantity
-        const res = await addItemToCart({ ...item, qty: 1 });
-
-        if (!res.success) {
-          toast({
-            variant: "destructive",
-            description: res.message,
-          });
-          return;
-        }
-
-        toast({
-          description: res.message,
-          action: (
-            <ToastAction
-              className="bg-primary text-white hover:bg-gray-800"
-              altText="Go To Cart"
-              onClick={() => router.push("/cart")}
-            >
-              Go To Cart
-            </ToastAction>
-          ),
-        });
+        return;
       }
+
+      // Handle success add to cart
+      toast({
+        description: res.message,
+        action: (
+          <ToastAction
+            className="bg-primary text-white hover:bg-gray-800"
+            altText="Go To Cart"
+            onClick={() => router.push("/cart")}
+          >
+            Go To Cart
+          </ToastAction>
+        ),
+      });
     });
   };
 
-  // Handle removing from cart
-  const handleRemoveFromCart = async () => {
-    startTransition(async () => {
-      const res = await removeItemFromCart(item.productId);
+  // Handle incrementing quantity (only updates local state)
+  const handleIncrement = () => {
+    setQuantity((prev) => prev + 1);
+  };
 
-      toast({
-        variant: res.success ? "default" : "destructive",
-        description: res.message,
-      });
-    });
+  // Handle decrementing quantity (only updates local state)
+  const handleDecrement = () => {
+    setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
   };
 
   return (
     <>
       <p className="body-1 mb-2 lg:mb-3">Choose your number of plants</p>
 
-      {existItem ? (
-        <div className="flex flex-row gap-2 lg:gap-4 mb-5 lg:mb-10">
-          <Button onClick={handleRemoveFromCart} variant="secondary">
-            {isPending ? (
-              <CircularProgress className="w-10 h-4" />
-            ) : (
-              <RemoveIcon className="w-10 h-4" />
-            )}
-          </Button>
-          <Button variant="secondary" className="w-20">
-            {existItem.qty}
-          </Button>
-          <Button onClick={handleAddToCart} variant="secondary">
-            {isPending ? (
-              <CircularProgress className="w-10 h-4" />
-            ) : (
-              <AddIcon className="w-10 h-4" />
-            )}
-          </Button>
-        </div>
-      ) : (
-        <div className="flex flex-row gap-2 lg:gap-4 mb-5 lg:mb-10">
-          <Button onClick={handleRemoveFromCart} variant="secondary">
-            {isPending ? (
-              <CircularProgress className="w-10 h-4" />
-            ) : (
-              <RemoveIcon className="w-10 h-4" />
-            )}
-          </Button>
-          <Button variant="secondary" className="w-20">
-            1
-          </Button>
-          <Button onClick={handleAddToCart} variant="secondary">
-            {isPending ? <CircularProgress /> : <AddIcon />}
-          </Button>
-        </div>
-      )}
+      <div className="flex flex-row gap-2 lg:gap-4 mb-5 lg:mb-10">
+        <Button
+          onClick={handleDecrement}
+          variant="secondary"
+          disabled={quantity === 0}
+        >
+          <RemoveIcon className="w-10 h-4" />
+        </Button>
+        <Button variant="secondary" className="w-20">
+          {quantity}
+        </Button>
+        <Button onClick={handleIncrement} variant="secondary">
+          <AddIcon className="w-10 h-4" />
+        </Button>
+      </div>
 
       {/* PRICE */}
       <div className="border border-accent rounded-lg flex-between flex-row gap-3 lg:gap-6 p-3 lg:p-6">
@@ -142,7 +102,11 @@ export default function AddToCartButton({ item, cart }: AddToCartButtonProps) {
           <span className="font-medium text-2xl lg:text-3xl">{item.price}</span>
         </p>
         {item.stock > 0 ? (
-          <Button type="button" onClick={handleAddToCart} disabled={isPending}>
+          <Button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={isPending || quantity < 1} // Disable if quantity is less than 1
+          >
             {isPending ? (
               <CircularProgress className="w-20" />
             ) : (

@@ -61,14 +61,14 @@ export async function addItemToCart(data: CartItem) {
 
       if (existItem) {
         // Check stock
-        if (product.stock < existItem.qty + item.qty) {
+        if (product.stock < item.qty) {
           throw new Error("Out of stock");
         }
 
         // Update the quantity
         (cart.items as CartItem[]).find(
           (x) => x.productId === item.productId
-        )!.qty = existItem.qty + item.qty;
+        )!.qty = item.qty;
       } else {
         // If item does not exist in cart
         // Check stock
