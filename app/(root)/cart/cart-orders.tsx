@@ -33,14 +33,13 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
           Your cart is empty. <Link href="/">Shopping now</Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-[3fr,1fr] gap-3 md:gap-6">
+        <div className="grid-center grid-cols-1 gap-3 md:gap-6">
           <div className="overflow-x-auto">
-            <Table>
+            <Table className="">
               <TableHeader>
                 <TableRow>
                   <TableHead>Plants</TableHead>
-                  <TableHead className="text-center">Quantity</TableHead>
-                  <TableHead className="text-right">Price</TableHead>
+                  <TableHead className="">Price</TableHead>
                   <TableHead className="text-right"></TableHead>
                 </TableRow>
               </TableHeader>
@@ -55,19 +54,21 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                         <Image
                           src={item.image}
                           alt={item.name}
-                          width={50}
-                          height={50}
-                          className="w-16 h-16 rounded-md"
+                          width={150}
+                          height={150}
+                          className="w-14 h-14 md:w-28 md:h-auto rounded-md"
                         />
 
                         <span className="px-2">{item.name}</span>
                       </Link>
                     </TableCell>
 
-                    <TableCell className="text-center">
-                      <span className="">{item.qty}</span>
+                    <TableCell className="flex items-start flex-col gap-2 md:gap-4">
+                      <span>${item.price}</span>
+                      <span className="body-2 text-accent-foreground">
+                        Quantity: {item.qty}
+                      </span>
                     </TableCell>
-                    <TableCell className="text-right">${item.price}</TableCell>
                     <TableCell className="text-right">
                       <Button
                         disabled={isPending}
@@ -103,15 +104,14 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
           </div>
 
           <Card>
-            <CardContent className="p-4 gap-4">
-              <div className="flex-between pb-3 text-xl">
-                Total ({cart.items.reduce((a, c) => a + c.qty, 0)}):
-                <span className="font-bold">
-                  {formatCurrency(cart.itemsPrice)}
-                </span>
+            <CardContent className="flex-between p-4 gap-4">
+              <div className="flex flex-col gap-">
+                Subtotal ({cart.items.reduce((a, c) => a + c.qty, 0)}):
+                <span className="h3">{formatCurrency(cart.itemsPrice)}</span>
               </div>
+
               <Button
-                className="w-full"
+                className=""
                 disabled={isPending}
                 onClick={() =>
                   startTransition(() => router.push("/shipping-address"))

@@ -31,7 +31,7 @@ export async function getAllProducts({
 }) {
   // Construct query filters
   const categoryFilter = category && category !== "all" ? { category } : {};
-  console.log(categoryFilter);
+
   const priceFilter =
     price && price !== "all"
       ? {
@@ -96,4 +96,14 @@ export async function getProductBySlug(slug: string) {
   if (!product) return null;
 
   return convertToPlainObject(product);
+}
+
+// Get all categories
+export async function getAllCategories() {
+  const data = await prisma.product.groupBy({
+    by: ["category"],
+    _count: true,
+  });
+
+  return data;
 }

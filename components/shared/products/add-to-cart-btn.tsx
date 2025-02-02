@@ -3,11 +3,11 @@
 import { Cart, CartItem } from "@/types";
 import { Button } from "@/components/ui/button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { useTransition, useState, useEffect } from "react"; 
+import { useTransition, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { addItemToCart } from "@/lib/actions/cart.actions"; 
+import { addItemToCart } from "@/lib/actions/cart.actions";
 import CircularProgress from "@mui/material/CircularProgress";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
@@ -97,10 +97,19 @@ export default function AddToCartButton({ item, cart }: AddToCartButtonProps) {
 
       {/* PRICE */}
       <div className="border border-accent rounded-lg flex-between flex-row gap-3 lg:gap-6 p-3 lg:p-6">
-        <p className="flex items-start">
-          $
-          <span className="font-medium text-2xl lg:text-3xl">{item.price}</span>
-        </p>
+        <div className="flex flex-col gap-1 lg:gap-2">
+          <p className="flex items-start">
+            $
+            <span className="font-medium text-2xl lg:text-3xl">
+              {item.price}
+            </span>
+          </p>
+          <p className="text-center">
+            <span className="body-1">Stock: </span>
+            {item.stock}
+          </p>
+        </div>
+
         {item.stock > 0 ? (
           <Button
             type="button"

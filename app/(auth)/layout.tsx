@@ -10,7 +10,7 @@ export default function AuthLayout({
         backgroundImage: "url('/images/signin-bg.jpg')",
       }}
     >
-      <div className="w-full flex-center bg-[#212121] bg-opacity-50 h-full">
+      <div className="w-full flex-center bg-[#212121] bg-opacity-50 h-screen">
         {children}
       </div>
       <div></div>

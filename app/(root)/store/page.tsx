@@ -73,7 +73,7 @@ export default function Store() {
     };
 
     fetchData();
-  }, [sortOption, priceRange, rating, page, categoryOption]); // Re-fetch when filters or page changes
+  }, [sortOption, priceRange, rating, page, categoryOption]);
 
   // Handle page change
   const handlePageChange = (newPage: number) => {
@@ -92,7 +92,7 @@ export default function Store() {
     setRating(value === "all" ? null : value);
   };
 
-  // Handle rating filter change
+  // Handle category filter change
   const handleCategoryChange = (value: string) => {
     setcategoryOption(value);
     console.log("Selected category:", value);
@@ -104,7 +104,7 @@ export default function Store() {
     if (["new", "favorite", "best-deals", "all"].includes(value)) {
       setSortOption(value);
     } else {
-      setSortOption("all"); // Default to "all" if an invalid value is selected
+      setSortOption("all");
     }
   };
   const visiblePages = [

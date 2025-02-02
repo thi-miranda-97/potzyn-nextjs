@@ -10,12 +10,21 @@ export const FEATURED_BLOGS_LIMIT =
   Number(process.env.FEATURED_BLOGS_LIMIT) || 4;
 
 export const signInDefaultValues = {
-  email: "user@example.com",
+  email: "potzyn@example.com",
   password: "123456",
 };
+
 export const signUpDefaultValues = {
   name: "",
   email: "",
   password: "",
   confirmPassword: "",
+};
+
+export const shippingAddressDefaultValues = {
+  fullName: "",
+  streetAddress: "",
+  city: "",
+  postalCode: "",
+  country: "",
 };

@@ -170,17 +170,10 @@ export async function removeItemFromCart(productId: string) {
     );
     if (!exist) throw new Error("Item not found");
 
-    // Check if only one in qty
-    if (exist.qty === 1) {
-      // Remove from cart
-      cart.items = (cart.items as CartItem[]).filter(
-        (x) => x.productId !== exist.productId
-      );
-    } else {
-      // Decrease qty
-      (cart.items as CartItem[]).find((x) => x.productId === productId)!.qty =
-        exist.qty - 1;
-    }
+    // Remove the item completely from the cart
+    cart.items = (cart.items as CartItem[]).filter(
+      (x) => x.productId !== productId
+    );
 
     // Update cart in database
     await prisma.cart.update({
