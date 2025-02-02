@@ -3,11 +3,11 @@
 import { Cart, CartItem } from "@/types";
 import { Button } from "@/components/ui/button";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { useTransition, useState, useEffect } from "react"; // Add useEffect
+import { useTransition, useState, useEffect } from "react"; 
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import { addItemToCart } from "@/lib/actions/cart.actions"; // Only use addItemToCart
+import { addItemToCart } from "@/lib/actions/cart.actions"; 
 import CircularProgress from "@mui/material/CircularProgress";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
