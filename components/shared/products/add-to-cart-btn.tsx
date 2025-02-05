@@ -82,15 +82,15 @@ export default function AddToCartButton({ item, cart }: AddToCartButtonProps) {
       <div className="flex flex-row gap-2 lg:gap-4 mb-5 lg:mb-10">
         <Button
           onClick={handleDecrement}
-          variant="secondary"
+          variant="outline"
           disabled={quantity === 0}
         >
           <RemoveIcon className="w-10 h-4" />
         </Button>
-        <Button variant="secondary" className="w-20">
+        <Button variant="outline" className="w-20">
           {quantity}
         </Button>
-        <Button onClick={handleIncrement} variant="secondary">
+        <Button onClick={handleIncrement} variant="outline">
           <AddIcon className="w-10 h-4" />
         </Button>
       </div>

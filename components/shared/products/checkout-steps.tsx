@@ -10,13 +10,15 @@ const CheckoutSteps = ({ current = 0 }) => {
             <div
               className={cn(
                 "p-2 w-56 rounded-full text-center body-2",
-                index === current ? "bg-secondary" : ""
+                index === current
+                  ? "bg-input text-[#212121]"
+                  : "text-accent-foreground"
               )}
             >
               {step}
             </div>
             {step !== "Place Order" && (
-              <hr className="w-16 border-t border-gray-300 mx-2" />
+              <hr className="w-16 border-t border-input mx-2" />
             )}
           </React.Fragment>
         )

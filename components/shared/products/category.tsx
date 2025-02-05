@@ -25,7 +25,7 @@ const Category = ({
       {categories.map((category) => (
         <Button
           key={category}
-          variant={activeCategory === category ? "default" : "secondary"}
+          variant={activeCategory === category ? "default" : "outline"}
           onClick={() => handleCategoryClick(category)}
           className=""
         >

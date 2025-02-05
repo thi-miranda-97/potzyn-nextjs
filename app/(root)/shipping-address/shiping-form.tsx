@@ -18,9 +18,9 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import CircularProgress from "@mui/material/CircularProgress";
 import { updateUserAddress } from "@/lib/actions/user.actions";
 import { shippingAddressDefaultValues } from "@/lib/constants";
+import CircularProgress from "@mui/material/CircularProgress";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
@@ -61,19 +61,18 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
         <p className="body-2 text-muted-foreground">
           Please enter and address to ship to
         </p>
-        <form
-          method="post"
-          className="space-y-4"
-          onSubmit={form.handleSubmit(onSubmit)}
-        >
-          <Form {...form}>
+
+        <Form {...form}>
+          <form
+            method="post"
+            className="space-y-4"
+            onSubmit={form.handleSubmit(onSubmit)}
+          >
             <div className="flex flex-col md:flex-row gap-5">
               <FormField
                 control={form.control}
                 name="fullName"
-                render={({
-                  field,
-                }: {
+                render={(field: {
                   field: ControllerRenderProps<
                     z.infer<typeof shippingAddressSchema>,
                     "fullName"
@@ -93,9 +92,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
               <FormField
                 control={form.control}
                 name="streetAddress"
-                render={({
-                  field,
-                }: {
+                render={(field: {
                   field: ControllerRenderProps<
                     z.infer<typeof shippingAddressSchema>,
                     "streetAddress"
@@ -115,9 +112,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
               <FormField
                 control={form.control}
                 name="city"
-                render={({
-                  field,
-                }: {
+                render={(field: {
                   field: ControllerRenderProps<
                     z.infer<typeof shippingAddressSchema>,
                     "city"
@@ -137,9 +132,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
               <FormField
                 control={form.control}
                 name="postalCode"
-                render={({
-                  field,
-                }: {
+                render={(field: {
                   field: ControllerRenderProps<
                     z.infer<typeof shippingAddressSchema>,
                     "postalCode"
@@ -159,9 +152,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
               <FormField
                 control={form.control}
                 name="country"
-                render={({
-                  field,
-                }: {
+                render={(field: {
                   field: ControllerRenderProps<
                     z.infer<typeof shippingAddressSchema>,
                     "country"
@@ -189,8 +180,8 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                 )}
               </Button>
             </div>
-          </Form>
-        </form>
+          </form>
+        </Form>
       </div>
     </>
   );
