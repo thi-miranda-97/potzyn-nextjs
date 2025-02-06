@@ -48,18 +48,19 @@ const PlaceOrderPage = async () => {
               key={item.slug}
               className="flex flex-col gap-2 md:gap-4 mb-3 md:mb-6 mr-2 md:mr-4"
             >
-              <Image
-                src={item.image}
-                alt={item.name}
-                width={500}
-                height={500}
-                priority
-                className="rounded-md"
-              />
               <Link
-                href={`/product/{item.slug}`}
+                href={`/product/${item.slug}`}
                 className="flex flex-col justify-start"
               >
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={500}
+                  height={500}
+                  priority
+                  className="rounded-md"
+                />
+
                 <span className="font-bold text-left mb-2 md:mb-4">
                   {item.name}
                 </span>

@@ -22,6 +22,11 @@ declare module "next-auth" {
     price: string;
     qty: number;
     image: string;
-    stock: number;
+    stock?: number;
   }
 }
+
+// Create a new type for OrderItem to avoid passing unnecessary fields like `stock`
+type OrderItemForCreation = Omit<CartItem, "stock"> & {
+  price: number; // Ensure the price is a number when passing it to Prisma
+};

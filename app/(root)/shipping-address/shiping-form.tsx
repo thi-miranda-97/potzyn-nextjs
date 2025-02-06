@@ -81,7 +81,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                   <FormItem className="w-full">
                     <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter full name" {...field} />
+                      <Input placeholder="Enter full name" {...field.field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -101,7 +101,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                   <FormItem className="w-full">
                     <FormLabel>Address</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter address" {...field} />
+                      <Input placeholder="Enter address" {...field.field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -121,7 +121,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                   <FormItem className="w-full">
                     <FormLabel>City</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter city" {...field} />
+                      <Input placeholder="Enter city" {...field.field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -141,7 +141,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                   <FormItem className="w-full">
                     <FormLabel>Postal Code</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter postal code" {...field} />
+                      <Input placeholder="Enter postal code" {...field.field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -161,7 +161,7 @@ const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
                   <FormItem className="w-full">
                     <FormLabel>Country</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter country" {...field} />
+                      <Input placeholder="Enter country" {...field.field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

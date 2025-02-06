@@ -1,11 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
 import { Button } from "@/components/ui/button";
 import { useFormStatus } from "react-dom";
 import { createOrder } from "@/lib/actions/order.actions";
 import CircularProgress from "@mui/material/CircularProgress";
+
 const PlaceOrderForm = () => {
   const router = useRouter();
 
@@ -14,6 +14,7 @@ const PlaceOrderForm = () => {
 
     const res = await createOrder();
 
+    console.log(res);
     if (res.redirectTo) {
       router.push(res.redirectTo);
     }
@@ -23,7 +24,7 @@ const PlaceOrderForm = () => {
     const { pending } = useFormStatus();
     return (
       <Button disabled={pending} className="w-full">
-        {pending ? <CircularProgress className="w-4 h-4 animate-spin" /> : ""}{" "}
+        {pending ? <CircularProgress className="w-4 h-4 animate-spin" /> : null}{" "}
         Place Order
       </Button>
     );
