@@ -11,6 +11,7 @@ import { addItemToCart } from "@/lib/actions/cart.actions";
 import CircularProgress from "@mui/material/CircularProgress";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
+import { removeItemFromCart } from "@/lib/actions/cart.actions";
 
 interface AddToCartButtonProps {
   item: CartItem;
@@ -72,7 +73,14 @@ export default function AddToCartButton({ item, cart }: AddToCartButtonProps) {
 
   // Handle decrementing quantity (only updates local state)
   const handleDecrement = () => {
-    setQuantity((prev) => (prev > 0 ? prev - 1 : 0));
+    if (quantity === 1) {
+      startTransition(async () => {
+        await removeItemFromCart(item.productId); // Remove item when quantity reaches 0
+        setQuantity(0); // Update UI
+      });
+    } else {
+      setQuantity((prev) => prev - 1);
+    }
   };
 
   return (

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import classNames from "classnames";
+import { cn } from "@/lib/utils";
 
 export default function NavLinkDesktop() {
   const pathname = usePathname(); // Get the current path
@@ -22,7 +22,7 @@ export default function NavLinkDesktop() {
           <Link
             key={path}
             href={path}
-            className={classNames(
+            className={cn(
               "text-foreground hover:border-b hover:border-foreground",
               {
                 "font-bold": isActive(path),
@@ -33,8 +33,6 @@ export default function NavLinkDesktop() {
           </Link>
         ))}
       </div>
-
-      {/* Mobile navigation */}
     </>
   );
 }

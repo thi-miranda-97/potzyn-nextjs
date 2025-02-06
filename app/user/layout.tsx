@@ -1,7 +1,8 @@
 import Header from "@/components/shared/header";
 import Footer from "@/components/footer";
+import UserNav from "./user-nav";
 
-export default function RootLayout({
+export default function UserLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -9,7 +10,10 @@ export default function RootLayout({
   return (
     <div className="flex-between h-screen flex-col">
       <Header />
-      <main className="wrapper mt-20 lg:mt-28">{children}</main>
+      <main className="wrapper">
+        <UserNav />
+        {children}
+      </main>
       <Footer />
     </div>
   );

@@ -9,15 +9,18 @@ import { SheetTrigger } from "@/components/ui/sheet";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import classNames from "classnames";
+import { cn } from "@/lib/utils";
+import { useState } from "react";
+
 export default function NavLinkMobile() {
   const pathname = usePathname(); // Get the current path
+  const [open, setOpen] = useState(false);
 
   // Function to check if the link is active
   const isActive = (path: string) => pathname === path;
   return (
     <div className="md:hidden cursor-pointer flex-center p-2 hover-scale">
-      <Sheet>
+      <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger className="align-middle">
           <MenuIcon />
         </SheetTrigger>
@@ -34,7 +37,7 @@ export default function NavLinkMobile() {
                 <Link
                   key={path}
                   href={path}
-                  className={classNames("text-foreground hover:font-bold", {
+                  className={cn("text-foreground hover:font-bold", {
                     "font-bold": isActive(path),
                   })}
                 >
