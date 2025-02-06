@@ -84,14 +84,61 @@ const OrderDetailsTable = ({
   };
 
   return (
-    <>
-      <h2 className="py-4 h2">Order {formatId(id)}</h2>
-      <div className="grid md:grid-cols-3 md:gap-5">
-        <div className="col-span-2 space-4-y overlow-x-auto">
-          <Card>
-            <CardContent className="p-4 gap-4">
-              <h3 className="h3 pb-4">Payment Method</h3>
-              <p className="mb-2">{paymentMethod}</p>
+    <div className="mt-20 lg:mt-28">
+      <h2 className="py-4 h2">Order Id: {formatId(id)}</h2>
+      {/* Cart Table  */}
+      <div className=" overflow-x-auto">
+        <Table className="px-3 lg:px-6">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Plants</TableHead>
+              <TableHead className="text-center">Price</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {orderitems.map((item) => (
+              <TableRow key={item.slug}>
+                <TableCell>
+                  <Link
+                    href={`/product/${item.slug}`}
+                    className="flex items-center"
+                  >
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={150}
+                      height={150}
+                      className="w-14 h-14 md:w-28 md:h-auto rounded-md"
+                    />
+                    <span className="px-2">{item.name}</span>
+                  </Link>
+                </TableCell>
+
+                <TableCell className="text-center">
+                  <p className="flex flex-col gap-2 md:gap-4">
+                    <span className="font-bold">${item.price}</span>
+                    <span className="body-2 text-accent-foreground">
+                      Quantity: {item.qty}
+                    </span>
+                  </p>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+
+        {/* Payment method and delivery shipping address*/}
+        <div className="grid-between grid-cols-1 md:grid-cols-[1fr,2fr] gap-5 md:gap-10 mt-5 lg:mt-10">
+          <div className="flex flex-col items-start justify-between gap-3 lg:gap-6 bg-accent p-2 md:p-4 rounded-md mb-5 lg:mb-10">
+            {/* Payment */}
+            <div className="">
+              <p className="text-base lg:text-lg font-bold mb-1 md:mb-2">
+                Payments
+              </p>
+
+              <p className="text-[0.85rem] lg:text-[1rem] px-2 mb-2 lg:mb-4">
+                {paymentMethod}
+              </p>
               {isPaid ? (
                 <Badge variant="secondary">
                   Paid at {formatDateTime(paidAt!).dateTime}
@@ -99,16 +146,22 @@ const OrderDetailsTable = ({
               ) : (
                 <Badge variant="destructive">Not paid</Badge>
               )}
-            </CardContent>
-          </Card>
-          <Card className="my-2">
-            <CardContent className="p-4 gap-4">
-              <h3 className="h3 pb-4">Shipping Address</h3>
-              <p>{shippingAddress.fullName}</p>
-              <p className="mb-2">
-                {shippingAddress.streetAddress}, {shippingAddress.city}
-                {shippingAddress.postalCode}, {shippingAddress.country}
+            </div>
+
+            {/* Shipping */}
+            <div className="">
+              <p className="text-base lg:text-lg font-bold mb-1 md:mb-2">
+                Shipping Address
               </p>
+              <div className="px-2 mb-2 lg:mb-4">
+                <p className="font-medium mb-1 lg:mb-2">
+                  {shippingAddress.fullName}
+                </p>
+                <p className="text-[0.85rem] lg:text-[1rem]">
+                  {shippingAddress.streetAddress}, {shippingAddress.city}{" "}
+                  {shippingAddress.postalCode}, {shippingAddress.country}{" "}
+                </p>
+              </div>
               {isDelivered ? (
                 <Badge variant="secondary">
                   Delivered at {formatDateTime(deliveredAt!).dateTime}
@@ -116,56 +169,14 @@ const OrderDetailsTable = ({
               ) : (
                 <Badge variant="destructive">Not Delivered</Badge>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card>
-            <CardContent className="p-4 gap-4">
-              <h3 className="h3 pb-4">Order Items</h3>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Item</TableHead>
-                    <TableHead>Quantity</TableHead>
-                    <TableHead>Price</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {orderitems.map((item) => (
-                    <TableRow key={item.slug}>
-                      <TableCell>
-                        <Link
-                          href={`/product/{item.slug}`}
-                          className="flex items-center"
-                        >
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                          />
-                          <span className="px-2">{item.name}</span>
-                        </Link>
-                      </TableCell>
-                      <TableCell>
-                        <span className="px-2">{item.qty}</span>
-                      </TableCell>
-                      <TableCell className="text-right">
-                        ${item.price}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div>
-          <Card>
-            <CardContent className="p-4 gap-4 space-y-4">
+          {/* Fees */}
+          <Card className="px-1 md:px-2 flex flex-col gap-3 md:gap-6 shadow-none">
+            <CardContent className="p-4 gap-4 space-y-4 mb-3 lg:mb-6">
               <div className="flex justify-between">
-                <div>Items</div>
+                <div>Subtotal</div>
                 <div>{formatCurrency(itemsPrice)}</div>
               </div>
               <div className="flex justify-between">
@@ -176,14 +187,13 @@ const OrderDetailsTable = ({
                 <div>Shipping</div>
                 <div>{formatCurrency(shippingPrice)}</div>
               </div>
-              <div className="flex justify-between">
-                <div>Total</div>
+              <div className="text-lg lg:text-xl font-bold flex justify-between">
+                <div>Total price</div>
                 <div>{formatCurrency(totalPrice)}</div>
               </div>
 
-              {/* PayPal Payment */}
               {!isPaid && paymentMethod === "PayPal" && (
-                <div>
+                <div className="w-full">
                   <PayPalScriptProvider options={{ clientId: paypalClientId }}>
                     <PrintLoadingState />
                     <PayPalButtons
@@ -197,7 +207,7 @@ const OrderDetailsTable = ({
           </Card>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

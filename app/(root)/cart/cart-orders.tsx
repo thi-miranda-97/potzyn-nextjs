@@ -35,7 +35,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
       ) : (
         <div className="grid-center grid-cols-1 gap-3 md:gap-6">
           <div className="overflow-x-auto">
-            <Table className="">
+            <Table>
               <TableHeader>
                 <TableRow>
                   <TableHead>Plants</TableHead>
@@ -64,7 +64,7 @@ const CartTable = ({ cart }: { cart?: Cart }) => {
                     </TableCell>
 
                     <TableCell className="flex items-start flex-col gap-2 md:gap-4">
-                      <span>${item.price}</span>
+                      <span className="font-bold">${item.price}</span>
                       <span className="body-2 text-accent-foreground">
                         Quantity: {item.qty}
                       </span>

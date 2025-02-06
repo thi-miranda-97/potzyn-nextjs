@@ -39,7 +39,7 @@
     @apply font-medium text-base lg:text-lg uppercase;
   }
   .body-1 {
-    @apply text-[0.85rem] text-accent-foreground lg:text-[1rem];
+    @apply text-[0.85rem] lg:text-[1rem] text-accent-foreground;
   }
   .body-2 {
     @apply lg:text-[0.85rem] text-[0.65rem];
