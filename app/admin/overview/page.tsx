@@ -13,18 +13,14 @@ import { formatCurrency, formatDateTime, formatNumber } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
 import Charts from "./charts";
-import { auth } from "@/auth";
+import { requireAdmin } from "@/lib/auth-guard";
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
 };
 
 const OverviewPage = async () => {
-  const session = await auth();
-
-  if (session?.user?.role !== "admin") {
-    throw new Error("User is not authorized");
-  }
+  await requireAdmin();
 
   const summary = await getOrderSummary();
 
@@ -88,9 +84,11 @@ const OverviewPage = async () => {
             <CardTitle>Overview</CardTitle>
           </CardHeader>
           <CardContent>
-            <Charts data={{
+            <Charts
+              data={{
                 salesData: summary.salesData,
-              }}/>
+              }}
+            />
           </CardContent>
         </Card>
       </div>
