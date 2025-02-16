@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-export default function UserNav() {
+export default function AdminNav() {
   const pathname = usePathname();
   const isActive = (path: string) => pathname === path;
 
@@ -17,8 +17,10 @@ export default function UserNav() {
       </p>
       <div className="flex gap-5 flex-row md:gap-10 bg-accent p-3 lg:p-6 rounded-md w-fit mb-5 lg:mb-10 mx-auto">
         {[
-          { path: "/user/profile", label: "Your Profile" },
-          { path: "/user/orders", label: "Orders History" },
+          { path: "/admin/overview", label: "Overview" },
+          { path: "/admin/add-products", label: "Products" },
+          { path: "/admin/orders", label: "Orders" },
+          { path: "/admin/users", label: "Users" },
         ].map(({ path, label }) => (
           <Link
             key={path}

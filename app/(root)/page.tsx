@@ -90,7 +90,7 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 gap-20 lg:gap-32 mt-20 lg:mt-32">
+    <div className="grid grid-cols-1 gap-20 lg:gap-32 mt-20 lg:mt-28">
       {/* HERO */}
       <Hero />
 

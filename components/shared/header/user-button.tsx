@@ -13,6 +13,7 @@ import {
 import PortraitIcon from "@mui/icons-material/Portrait";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import BadgeOutlinedIcon from "@mui/icons-material/BadgeOutlined";
 
 const UserButton = async () => {
   const session = await auth();
@@ -54,19 +55,19 @@ const UserButton = async () => {
             </div>
           </DropdownMenuLabel>
 
-          {session?.user?.role === "admin" ? (
+          {session?.user?.role === "admin" && (
             <DropdownMenuItem>
               <Link href="/admin/overview" className="w-full">
-                <PortraitIcon /> Admin
-              </Link>
-            </DropdownMenuItem>
-          ) : (
-            <DropdownMenuItem>
-              <Link href="/user/profile" className="w-full">
-                <PortraitIcon /> User Profile
+                <BadgeOutlinedIcon /> Admin
               </Link>
             </DropdownMenuItem>
           )}
+          <DropdownMenuItem>
+            <Link href="/user/profile" className="w-full">
+              <PortraitIcon /> User Profile
+            </Link>
+          </DropdownMenuItem>
+
           <DropdownMenuItem>
             <Link href="/user/orders" className="w-full">
               <AddShoppingCartOutlinedIcon /> Order History

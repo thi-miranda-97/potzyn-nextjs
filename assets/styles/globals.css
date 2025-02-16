@@ -36,7 +36,7 @@
   }
 
   .h4 {
-    @apply font-medium text-base lg:text-lg uppercase;
+    @apply font-medium text-base lg:text-lg;
   }
   .body-1 {
     @apply text-[0.85rem] lg:text-[1rem] text-accent-foreground;
@@ -61,21 +61,25 @@
 
 @layer base {
   :root {
-    --background: #f6f6f6;
-    --foreground: #212121;
-    --accent: #eef1ee;
-    --accent-foreground: #818894;
-    --primary: #576e51;
-    --primary-foreground: #f6f6f6;
-    --secondary: #f9f6dc;
-    --secondary-foreground: #484632;
+    --background: #e7eceb;
+    --foreground: #020705;
+
+    --accent: #cfd9d6;
+    --accent-foreground: #587b70;
+    --muted: #88a199;
+    --muted-foreground: #092119;
+
+    --primary: #114232;
+    --primary-foreground: #e7eceb;
+
     --popover: #ffffff;
-    --popover-foreground: #1c0d08;
-    --muted: #eef1ee;
-    --muted-foreground: #818894;
-    --destructive: #fa7070;
-    --destructive-foreground: #f5fbff;
-    --input: #d9e4c1;
+    --popover-foreground: #000000;
+
+    --destructive: #c64756;
+    --destructive-foreground: #f4f4f4;
+
+    --input: #d5e5b9;
+
     --ring: #1c0d08;
     --chart-1: #e44926;
     --chart-2: #33a060;
@@ -86,20 +90,24 @@
   }
 
   .dark {
-    --background: #212121;
-    --foreground: #f6f6f6;
-    --accent: #1a2118;
-    --accent-foreground: #b4b4b4;
-    --primary: #576e51;
-    --primary-foreground: #f6f6f6;
-    --secondary: #484632;
-    --secondary-foreground: #f9f6dc;
-    --popover: #1c0d08;
-    --popover-foreground: #f5fbff;
-    --muted: #1a2118;
-    --muted-foreground: #91979e;
-    --destructive: #ca8787;
-    --destructive-foreground: #eef1ee;
+    --background: #11140b;
+    --foreground: #f7faf1;
+
+    --accent: #222917;
+    --accent-foreground: #eef5e3;
+
+    --muted: #55663a;
+    --muted-foreground: #d5e5b9;
+
+    --primary: #aacb73;
+    --primary-foreground: #212121;
+
+    --popover: #000;
+    --popover-foreground: #fff;
+
+    --destructive: #ac0c0c;
+    --destructive-foreground: #f4f4f4;
+
     --ring: #d7dce5;
     --chart-1: #3399ff;
     --chart-2: #33cc99;

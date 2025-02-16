@@ -9,7 +9,7 @@ export default function RootLayout({
   return (
     <div className="flex-between h-screen flex-col">
       <Header />
-      <main className="wrapper mt-20 lg:mt-28">{children}</main>
+      <main className="wrapper">{children}</main>
       <Footer />
     </div>
   );
