@@ -88,7 +88,9 @@ const OverviewPage = async () => {
             <CardTitle>Overview</CardTitle>
           </CardHeader>
           <CardContent>
-            <Charts />
+            <Charts data={{
+                salesData: summary.salesData,
+              }}/>
           </CardContent>
         </Card>
       </div>
