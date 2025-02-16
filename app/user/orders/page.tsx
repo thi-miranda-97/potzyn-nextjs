@@ -35,7 +35,7 @@ const OrdersPage = async (props: {
 
               <TableHead>TOTAL</TableHead>
               <TableHead>STATUS</TableHead>
-              <TableHead>ACTIONS</TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -69,6 +69,7 @@ const OrdersPage = async (props: {
                     </Badge>
                   )}
                 </TableCell>
+
                 <TableCell>
                   <Link href={`/order/${order.id}`}>
                     <span className=" bg-accent px-2 ">Details</span>

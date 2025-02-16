@@ -1,7 +1,8 @@
 import { Metadata } from "next";
-import { getMyOrders } from "@/lib/actions/order.actions";
+import CallMadeIcon from "@mui/icons-material/CallMade";
 import { formatCurrency, formatDateTime, formatId } from "@/lib/utils";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -12,17 +13,23 @@ import {
 } from "@/components/ui/table";
 import UserOrdersPagination from "@/components/shared/user-orders-pagination";
 import { Badge } from "@/components/ui/badge";
+import { requireAdmin } from "@/lib/auth-guard";
+import { getAllOrders } from "@/lib/actions/order.actions";
+
 export const metadata: Metadata = {
-  title: "My Orders",
+  title: "Admin Orders",
 };
 
-const OrdersPage = async (props: {
-  searchParams: Promise<{ page: string }>;
+const AdminOrdersPage = async (props: {
+  searchParams: Promise<{ page: string; query: string }>;
 }) => {
-  const { page } = await props.searchParams;
+  const { page = "1", query: searchText } = await props.searchParams;
 
-  const orders = await getMyOrders({
-    page: Number(page) || 1,
+  await requireAdmin();
+
+  const orders = await getAllOrders({
+    page: Number(page),
+    query: searchText,
   });
 
   return (
@@ -32,10 +39,9 @@ const OrdersPage = async (props: {
           <TableHeader>
             <TableRow>
               <TableHead>ID</TableHead>
-
               <TableHead>TOTAL</TableHead>
               <TableHead>STATUS</TableHead>
-              <TableHead>ACTIONS</TableHead>
+              <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -70,9 +76,11 @@ const OrdersPage = async (props: {
                   )}
                 </TableCell>
                 <TableCell>
-                  <Link href={`/order/${order.id}`}>
-                    <span className=" bg-accent px-2 ">Details</span>
-                  </Link>
+                  <Button variant="ghost">
+                    <Link href={`/order/${order.id}`}>
+                      <CallMadeIcon className="text-base text-accent-foreground hover:text-primary" />
+                    </Link>
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -89,4 +97,4 @@ const OrdersPage = async (props: {
   );
 };
 
-export default OrdersPage;
+export default AdminOrdersPage;

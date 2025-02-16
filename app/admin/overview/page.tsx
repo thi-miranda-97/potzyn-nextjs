@@ -95,7 +95,14 @@ const OverviewPage = async () => {
 
       <Card className="border border-input px-1 lg:px-2 py-2 lg:py-4">
         <CardHeader>
-          <CardTitle>Recent Sales</CardTitle>
+          <CardTitle className="flex-between gap-2 lg:gap-4">
+            <p>Recent Sales</p>
+            <div>
+              <Link href={`/admin/orders`}>
+                <CallMadeIcon className="text-accent-foreground hover:text-primary" />
+              </Link>
+            </div>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <Table>
