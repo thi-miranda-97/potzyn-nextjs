@@ -15,6 +15,8 @@ import UserOrdersPagination from "@/components/shared/user-orders-pagination";
 import { Badge } from "@/components/ui/badge";
 import { requireAdmin } from "@/lib/auth-guard";
 import { getAllOrders } from "@/lib/actions/order.actions";
+import DeleteDialog from "@/components/shared/products/delete-dialog";
+import { deleteOrder } from "@/lib/actions/order.actions";
 
 export const metadata: Metadata = {
   title: "Admin Orders",
@@ -33,7 +35,7 @@ const AdminOrdersPage = async (props: {
   });
 
   return (
-    <div className=" space-y-2">
+    <div className="space-y-2">
       <div className="overflow-x-auto shadow-lg">
         <Table>
           <TableHeader>
@@ -44,10 +46,11 @@ const AdminOrdersPage = async (props: {
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
             {orders.data.map((order) => (
               <TableRow key={order.id}>
-                <TableCell className="inline-flex flex-col gap-1">
+                <TableCell className="flex flex-col gap-1">
                   <span>{formatId(order.id)}</span>
 
                   <span className="body-2 text-accent-foreground">
@@ -55,6 +58,7 @@ const AdminOrdersPage = async (props: {
                   </span>
                 </TableCell>
                 <TableCell>{formatCurrency(order.totalPrice)}</TableCell>
+
                 <TableCell className="inline-flex flex-col gap-2 lg:gap-3">
                   {order.isPaid && order.paidAt ? (
                     <span className="body-2">
@@ -70,17 +74,19 @@ const AdminOrdersPage = async (props: {
                       formatDateTime(order.deliveredAt).dateTime
                     </span>
                   ) : (
-                    <Badge variant="outline" className="text-center">
+                    <Badge variant="outline" className="flex-center">
                       Not Delivered
                     </Badge>
                   )}
                 </TableCell>
-                <TableCell>
-                  <Button variant="ghost">
+
+                <TableCell className="text-right">
+                  <Button asChild variant="ghost" size="sm">
                     <Link href={`/order/${order.id}`}>
-                      <CallMadeIcon className="text-base text-accent-foreground hover:text-primary" />
+                      <CallMadeIcon className="text-accent-foreground" />
                     </Link>
                   </Button>
+                  <DeleteDialog id={order.id} action={deleteOrder} />
                 </TableCell>
               </TableRow>
             ))}
