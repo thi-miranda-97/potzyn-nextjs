@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import UserOrdersPagination from "@/components/shared/user-orders-pagination";
+import CustomPagination from "@/components/shared/custom-pagination";
 import { Badge } from "@/components/ui/badge";
 export const metadata: Metadata = {
   title: "My Orders",
@@ -80,7 +80,7 @@ const OrdersPage = async (props: {
           </TableBody>
         </Table>
         {orders.totalPages > 1 && (
-          <UserOrdersPagination
+          <CustomPagination
             page={Number(page) || 1}
             totalPages={orders?.totalPages}
           />

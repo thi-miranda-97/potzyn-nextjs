@@ -65,7 +65,7 @@ export default function Footer() {
         </span>
       </div>
 
-      <div className="text-center text-[0.5rem] lg:text-[1rem] text-gray-500">
+      <div className="text-right body-2 text-accent-foreground mt-2 lg:mt-4">
         &copy;{currentYear} Potzyn. All Rights Reserved.
       </div>
     </footer>

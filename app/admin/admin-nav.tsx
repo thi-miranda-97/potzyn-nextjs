@@ -18,7 +18,7 @@ export default function AdminNav() {
       <div className="flex gap-5 flex-row md:gap-10 bg-accent p-3 lg:p-6 rounded-md w-fit mb-5 lg:mb-10 mx-auto">
         {[
           { path: "/admin/overview", label: "Overview" },
-          { path: "/admin/add-product", label: "Products" },
+          { path: "/admin/products", label: "Products" },
           { path: "/admin/orders", label: "Orders" },
           { path: "/admin/users", label: "Users" },
         ].map(({ path, label }) => (

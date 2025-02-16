@@ -6,30 +6,22 @@ import { useState, useEffect } from "react";
 import { Product } from "@/types";
 
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
-import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import CustomPagination from "@/components/shared/custom-pagination";
 
 export default function Store() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [sortOption, setSortOption] = useState<string>("createdAt");
   const [priceRange, setPriceRange] = useState<string | null>(null);
   const [rating, setRating] = useState<string | null>("all");
-  const [page, setPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
   const [categoryOption, setcategoryOption] = useState<string>("all");
+  const [page, setPage] = useState<number>(1); // Add page state
+  const [totalPages, setTotalPages] = useState<number>(1); // Add totalPages state
 
   // Fetch products based on the filters and pagination
   useEffect(() => {
@@ -61,40 +53,36 @@ export default function Store() {
           rating: ratingValue ? ratingValue.toString() : undefined,
           category: categoryOption as "indoor" | "outdoor" | "flowers" | "all",
           page: page,
-          limit: 15,
+          limit: 100,
         });
 
         // Update the state with the fetched products and total pages
         setAllProducts(result.data);
-        setTotalPages(result.totalPages);
+        setTotalPages(result.totalPages); // Set totalPages from the API response
       } catch (error) {
         console.error("Error fetching products:", error);
       }
     };
 
     fetchData();
-  }, [sortOption, priceRange, rating, page, categoryOption]);
-
-  // Handle page change
-  const handlePageChange = (newPage: number) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setPage(newPage);
-    }
-  };
+  }, [sortOption, priceRange, rating, categoryOption, page]);
 
   // Handle price filter change
   const handlePriceChange = (value: string) => {
     setPriceRange(value);
+    setPage(1);
   };
 
   // Handle rating filter change
   const handleRatingChange = (value: string) => {
     setRating(value === "all" ? null : value);
+    setPage(1);
   };
 
   // Handle category filter change
   const handleCategoryChange = (value: string) => {
     setcategoryOption(value);
+    setPage(1);
     console.log("Selected category:", value);
   };
 
@@ -106,10 +94,8 @@ export default function Store() {
     } else {
       setSortOption("all");
     }
+    setPage(1);
   };
-  const visiblePages = [
-    ...new Set([1, page - 1, page, page + 1, totalPages]),
-  ].filter((p) => p > 0 && p <= totalPages);
 
   return (
     <section className="mt-20 lg:mt-32">
@@ -217,52 +203,8 @@ export default function Store() {
         <ProductList data={allProducts} limit={15} />
       )}
 
-      {/* Pagination Controls */}
-      <Pagination>
-        <PaginationContent>
-          {/* Previous button */}
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={() => handlePageChange(page - 1)}
-              className={`${page <= 1 && "opacity-60 pointer-events-none"}`}
-            />
-          </PaginationItem>
-
-          {/* Page numbers */}
-          {visiblePages.map((p, idx) => (
-            <PaginationItem key={p}>
-              {visiblePages[idx - 1] + 1 < p && <PaginationEllipsis />}
-              <PaginationLink
-                href="#"
-                onClick={() => handlePageChange(p)}
-                isActive={page === p}
-              >
-                {p}
-              </PaginationLink>
-            </PaginationItem>
-          ))}
-
-          {/* Ellipsis if more pages */}
-          {totalPages > 5 && page < totalPages - 2 && (
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-          )}
-
-          {/* Next button */}
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={() => handlePageChange(page + 1)}
-              className={`${
-                page >= totalPages &&
-                "text-foreground opacity-50 pointer-events-none"
-              }`}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      {/* Pagination */}
+      <CustomPagination page={page} totalPages={totalPages} />
     </section>
   );
 }

@@ -11,7 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import UserOrdersPagination from "@/components/shared/user-orders-pagination";
+import UserOrdersPagination from "@/components/shared/custom-pagination";
 import { Badge } from "@/components/ui/badge";
 import { requireAdmin } from "@/lib/auth-guard";
 import { getAllOrders } from "@/lib/actions/order.actions";
