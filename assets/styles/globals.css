@@ -126,3 +126,12 @@
     @apply bg-background text-foreground font-normal;
   }
 }
+
+/* Uploadthing button text override */
+html.dark .upload-field .text-white {
+  color: #ffffff !important;
+}
+
+.upload-field .text-white {
+  @apply text-accent-foreground !important;
+}

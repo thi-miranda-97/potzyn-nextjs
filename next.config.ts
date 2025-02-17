@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
   experimental: {
     serverActions: {},
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+        port: '',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
