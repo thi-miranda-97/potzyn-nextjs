@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllProducts } from "@/lib/actions/product.actions";
+import { getAllProducts, deleteProduct } from "@/lib/actions/product.actions";
 import { formatCurrency, formatId } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +13,7 @@ import {
 import { requireAdmin } from "@/lib/auth-guard";
 import DeleteDialog from "@/components/shared/products/delete-dialog";
 import CustomPagination from "@/components/shared/custom-pagination";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 const AdminProductsPage = async (props: {
   searchParams: Promise<{
@@ -80,10 +81,12 @@ const AdminProductsPage = async (props: {
               <TableCell>{product.stock}</TableCell>
               <TableCell>{product.rating}</TableCell>
               <TableCell className="flex gap-1">
-                <Button asChild variant="outline" size="sm">
-                  <Link href={`/admin/products/${product.id}`}>Edit</Link>
+                <Button asChild variant="ghost" size="sm">
+                  <Link href={`/admin/products/${product.id}`}>
+                    <EditOutlinedIcon />
+                  </Link>
                 </Button>
-                {/* <DeleteDialog id={product.id} action={deleteProduct} /> */}
+                <DeleteDialog id={product.id} action={deleteProduct} />
               </TableCell>
             </TableRow>
           ))}

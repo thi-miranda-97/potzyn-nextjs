@@ -47,11 +47,7 @@ const DeleteDialog = ({
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button
-          variant="destructive"
-          size="sm"
-          className="text-accent-foreground"
-        >
+        <Button variant="destructive" size="sm">
           <DeleteOutlineOutlinedIcon />
         </Button>
       </AlertDialogTrigger>
