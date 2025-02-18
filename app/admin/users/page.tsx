@@ -31,13 +31,13 @@ const AdminUserPage = async (props: {
 
   const { page = "1", query: searchText } = await props.searchParams;
 
-  const users = await getAllUsers({ page: Number(page) });
+  const users = await getAllUsers({ page: Number(page), query: searchText });
 
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-3">
         {searchText && (
-          <div>
+          <div className="flex flex-row gap-3">
             Filtered by <i>&quot;{searchText}&quot;</i>{" "}
             <Link href="/admin/users">
               <Button variant="outline" size="sm">

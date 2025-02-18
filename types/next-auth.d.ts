@@ -5,6 +5,7 @@ declare module "next-auth" {
     user: {
       id: string;
       role?: "admin" | "user";
+    
     } & DefaultSession["user"];
   }
   interface User {
@@ -13,8 +14,7 @@ declare module "next-auth" {
     email?: string | null;
     image?: string | null;
     role?: "admin" | "user";
-    password?: string | null;
-    confirmPassword?: string | null;
+    password?: string | "";
   }
   interface CartItem {
     productId: string;

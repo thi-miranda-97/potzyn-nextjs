@@ -36,6 +36,18 @@ const AdminOrdersPage = async (props: {
 
   return (
     <div className="space-y-2">
+      <div className="flex items-center gap-3">
+        {searchText && (
+          <div className="flex flex-row gap-3">
+            Filtered by <i>&quot;{searchText}&quot;</i>{" "}
+            <Link href="/admin/orders">
+              <Button variant="outline" size="sm">
+                Remove Filter
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
       <div className="overflow-x-auto shadow-lg">
         <Table>
           <TableHeader>

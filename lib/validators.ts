@@ -140,6 +140,7 @@ export const updateProfileSchema = z.object({
 export const updateUserSchema = updateProfileSchema.extend({
   id: z.string().min(1, "ID is required"),
   role: z.string().min(1, "Role is required"),
+  password: z.string().nullable().optional(),
 });
 
 // Schema to insert reviews

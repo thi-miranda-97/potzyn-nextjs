@@ -15,7 +15,8 @@ export default function AdminNav() {
       <p className="body-1 mb-3 lg:mb-6">
         Manage data and track key insights effortlessly
       </p>
-      <div className="flex gap-5 flex-row md:gap-10 bg-accent p-3 lg:p-6 rounded-md w-fit mb-5 lg:mb-10 mx-auto">
+
+      <div className="bg-accent flex-center gap-3 flex-row md:gap-6 py-2 px-5 rounded-md w-fit mb-5 lg:mb-10 mx-auto">
         {[
           { path: "/admin/overview", label: "Overview" },
           { path: "/admin/products", label: "Products" },
@@ -26,7 +27,7 @@ export default function AdminNav() {
             key={path}
             href={path}
             className={cn(
-              "text-accent-foreground hover:border hover:border-input p-1 lg:p-2 rounded-md ",
+              "text-accent-foreground hover:border hover:border-input py-1 px-2 lg:px-4 rounded-md ",
               {
                 "text-primary-foreground bg-primary font-medium px-2 lg:px-4 rounded-md shadow-md":
                   isActive(path),
