@@ -10,11 +10,11 @@ export default function Hero() {
       <div className="flex justify-start items-start lg:flex-between flex-col lg:flex-row mb-5 lg:mb-10">
         <h1 className="h1 mb-2 lg:mb-none">Grow Joy, One Leaf at a Time</h1>
         <div>
-          <Button className="px-2 lg:px-4 py-1 lg:py-2 uppercase">
-            <Link href="/store">
+          <Link href="/store" passHref legacyBehavior>
+            <Button className="px-2 lg:px-4 py-1 lg:py-2 uppercase">
               Shop Now <DoubleArrowIcon />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="grid grid-cols-[1fr_1fr] lg:grid-cols-[2fr_1fr_1fr] justify-start item-start gap-4">
@@ -36,11 +36,11 @@ export default function Hero() {
               <div className="flex-between grid-cols-2">
                 <p className="body-2 text-gray-500">collection</p>
                 <div>
-                  <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
-                    <Link className="" href="#product-list">
+                  <Link href="#product-list" passHref legacyBehavior>
+                    <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
                       <CallMadeIcon />
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -63,11 +63,11 @@ export default function Hero() {
             <div className="flex-between grid-cols-2">
               <p className="body-2 text-gray-500">blog tips</p>
               <div>
-                <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
-                  <Link className="" href="#blog-list">
+                <Link href="#blog-list" passHref legacyBehavior>
+                  <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
                     <CallMadeIcon />
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -97,11 +97,11 @@ export default function Hero() {
             <div className="flex-between grid-cols-2">
               <p className="body-2 text-gray-500">new arrival</p>
               <div>
-                <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
-                  <Link className="" href="#new-arrival">
+                <Link href="#new-arrival" passHref legacyBehavior>
+                  <Button className="w-6 h-6 p-1 lg:p-2 rounded-full">
                     <CallMadeIcon />
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

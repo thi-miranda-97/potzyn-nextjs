@@ -1,93 +1,22 @@
-"use client";
 import Link from "next/link";
-
-import { useState, useEffect } from "react";
 import {
   getLatestProducts,
-  getAllProducts,
+  getFeaturedProducts,
 } from "@/lib/actions/product.actions";
 import ProductList from "@/components/shared/products/product-list";
 import Hero from "@/components/hero";
 import NewArrival from "@/components/new-arrival";
 import CTA from "@/components/cta";
-import { Product } from "@/types";
+
 import About from "@/components/ui/about";
 import BlogList from "@/components/shared/blog/blog-list";
-import { FeaturedBlog, getFeaturedBlogs } from "@/lib/actions/blog.actions";
+import { getFeaturedBlogs } from "@/lib/actions/blog.actions";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
-const Homepage = () => {
-  // State for latest and all products
-  const [latestProducts, setLatestProducts] = useState<Product[]>([]);
-  const [allProducts, setAllProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const [featuredBlogs, setFeaturedBlogs] = useState<FeaturedBlog[]>([]);
-  const [loadingBlogs, setLoadingBlogs] = useState<boolean>(true);
-  const [errorBlogs, setErrorBlogs] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchFeaturedBlogs = async () => {
-      setLoadingBlogs(true);
-      setErrorBlogs(null);
-
-      try {
-        const blogs = await getFeaturedBlogs();
-        setFeaturedBlogs(blogs); // Blogs are of type FeaturedBlog[]
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-        setErrorBlogs("Failed to load blogs. Please try again later.");
-      } finally {
-        setLoadingBlogs(false);
-      }
-    };
-
-    fetchFeaturedBlogs();
-  }, []);
-
-  // Fetch data on mount
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        // Fetch latest products
-        const latestData = await getLatestProducts();
-        setLatestProducts(
-          latestData.map((product) => ({
-            ...product,
-            price: product.price?.toString(), // Convert Decimal to string
-            rating: product.rating?.toString(), // Convert Decimal to string
-          }))
-        );
-
-        // Fetch all products
-        const allDataResponse = await getAllProducts({
-          category: "all",
-          page: 1,
-          limit: 10,
-        });
-
-        // Assuming `getAllProducts` returns { data: Product[] }
-        setAllProducts(
-          allDataResponse.data.map((product) => ({
-            ...product,
-            price: product.price?.toString(),
-            rating: product.rating?.toString(),
-          }))
-        );
-      } catch (err) {
-        console.error("Error fetching products:", err);
-        setError("Failed to load products. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
+const Homepage = async () => {
+  const latestProducts = await getLatestProducts();
+  const featuredProducts = await getFeaturedProducts();
+  const featuredBlogs = await getFeaturedBlogs();
 
   return (
     <div className="grid grid-cols-1 gap-20 lg:gap-32 mt-20 lg:mt-28">
@@ -103,13 +32,8 @@ const Homepage = () => {
           From lush indoor companions to blooming outdoor beauties, explore our
           top picks that add energy and life to your home.
         </p>
-        {loading ? (
-          <p>Loading products...</p>
-        ) : error ? (
-          <p className="text-red-500">{error}</p>
-        ) : (
-          <ProductList data={allProducts} limit={3} />
-        )}
+
+        {featuredProducts.length > 0 && <ProductList data={featuredProducts} />}
       </section>
 
       {/* ABOUT US SECTION */}
@@ -131,23 +55,19 @@ const Homepage = () => {
         <p className="body-1 text-center mb-3 lg:mb-6">
           Discover expert tips and tricks to elevate your gardening game.
         </p>
-        {loadingBlogs ? (
-          <p>Loading blogs...</p>
-        ) : errorBlogs ? (
-          <p className="text-destructive">{errorBlogs}</p>
-        ) : (
-          <BlogList
-            data={featuredBlogs.map((blog) => ({
-              ...blog,
-              content: "",
-              published: false,
-              featured: true,
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            }))}
-            limit={4}
-          />
-        )}
+
+        <BlogList
+          data={featuredBlogs.map((blog) => ({
+            ...blog,
+            content: "",
+            published: false,
+            featured: true,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          }))}
+          limit={4}
+        />
+
         <div className="flex-center">
           <Link href="/blog" className="link text-center">
             Read more tips <DoubleArrowIcon />

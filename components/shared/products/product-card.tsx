@@ -1,4 +1,3 @@
-"use client";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Link from "next/link";
 import Image from "next/image";
