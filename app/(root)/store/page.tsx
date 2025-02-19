@@ -10,6 +10,7 @@ import ProductCard from "@/components/shared/products/product-card";
 import { getAllProducts } from "@/lib/actions/product.actions";
 import { Button } from "@/components/ui/button";
 import CustomPagination from "@/components/shared/custom-pagination";
+import Search from "@/components/shared/header/search";
 
 const StorePage = async (props: {
   searchParams: {
@@ -42,17 +43,20 @@ const StorePage = async (props: {
   const categories = await getAllCategories();
 
   return (
-    <div className="mt-20 lg:mt-28">
-      <div className="flex-between flex-col lg:flex-row mb-5 lg:mb-10">
-        <form method="GET" className="flex-between gap-2 lg:gap-4">
+    <div className="mt-24 lg:mt-28">
+      <form
+        method="GET"
+        className="flex flex-col gap-2 lg:gap-4 md:flex-row mb-2 lg:mb-4"
+      >
+        <div className="flex flex-row gap-2 lg:gap-4">
           {/* Category Filter */}
           <Select name="category" defaultValue={category}>
-            <SelectTrigger className="w-24 lg:w-[180px]">
+            <SelectTrigger className="w-20 md:w-24 lg:w-[180px] body-2 text-foreground">
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem key="All" value="all">
-                All
+                Category
               </SelectItem>
               {categories.map((x) => (
                 <SelectItem key={x.category} value={x.category}>
@@ -64,12 +68,12 @@ const StorePage = async (props: {
 
           {/* Price Filter */}
           <Select name="price" defaultValue={price}>
-            <SelectTrigger className="w-24 lg:w-[180px]">
+            <SelectTrigger className="w-20 md:w-24 lg:w-[180px] body-2 text-foreground">
               <SelectValue placeholder="Select a price range" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem key="All" value="all">
-                All
+                Price
               </SelectItem>
               <SelectItem key="1-50" value="1-50">
                 $1 to $50
@@ -91,12 +95,12 @@ const StorePage = async (props: {
 
           {/* Rating Filter */}
           <Select name="rating" defaultValue={rating}>
-            <SelectTrigger className="w-24 lg:w-[180px]">
+            <SelectTrigger className="w-20 md:w-24 lg:w-[180px] body-2 text-foreground">
               <SelectValue placeholder="Select a rating" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem key="All" value="all">
-                All
+                Rating
               </SelectItem>
               <SelectItem key="4" value="4">
                 4 Stars & Up
@@ -115,7 +119,7 @@ const StorePage = async (props: {
 
           {/* Sort Filter */}
           <Select name="sort" defaultValue={sort}>
-            <SelectTrigger className="w-24 lg:w-[180px]">
+            <SelectTrigger className="w-20 md:w-24 lg:w-[180px] body-2 text-foreground">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
@@ -133,11 +137,14 @@ const StorePage = async (props: {
               </SelectItem>
             </SelectContent>
           </Select>
+        </div>
+        {/* Submit Button (Optional) */}
+        <Button size="sm" type="submit" className="w-fit body-2">
+          Apply Filters
+        </Button>
+      </form>
 
-          {/* Submit Button (Optional) */}
-          <Button type="submit">Apply Filters</Button>
-        </form>
-      </div>
+      <Search />
 
       {/* Product List */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 mb-6">

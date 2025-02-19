@@ -1,7 +1,5 @@
 import ModeToggleTheme from "./mode-toggle";
-import Search from "./search";
 import Cart from "./cart";
-
 import UserButton from "./user-button";
 import NavLinkMobile from "./navlink-mobile";
 export default function Menu() {
@@ -10,7 +8,7 @@ export default function Menu() {
       <div className="flex justify-end gap-2 lg:gap-4">
         <ModeToggleTheme />
         <Cart />
-        <Search />
+
         {/* USER BUTTON */}
         <UserButton />
         <NavLinkMobile />
