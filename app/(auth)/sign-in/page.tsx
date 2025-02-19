@@ -45,8 +45,8 @@ const SignInPage = async (props: {
           </Link>
           <CardTitle className="uppercase">Welcome back</CardTitle>
 
-          <CardDescription className="">
-            Don&apos;t have an account{" "}
+          <CardDescription className="text-input">
+            Don&apos;t have an account?{" "}
             <Link href="/sign-up" className="link" target="_self">
               Sign Up
             </Link>

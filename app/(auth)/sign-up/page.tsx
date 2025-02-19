@@ -44,7 +44,7 @@ const SignUpPage = async (props: {
           </Link>
           <CardTitle className="uppercase">Create an account</CardTitle>
 
-          <CardDescription className="">
+          <CardDescription className="text-input">
             Already a member?{" "}
             <Link href="/sign-in" className="link" target="_self">
               Sign In

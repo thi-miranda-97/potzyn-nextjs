@@ -13,15 +13,19 @@ import CustomPagination from "@/components/shared/custom-pagination";
 import Search from "@/components/shared/header/search";
 
 const StorePage = async (props: {
-  searchParams: {
+  searchParams: Promise<{
     q?: string;
     category?: string;
     price?: string;
     rating?: string;
     sort?: string;
     page?: string;
-  };
+  }>;
 }) => {
+  // Await the searchParams promise
+  const searchParams = await props.searchParams;
+
+  // Destructure searchParams after awaiting
   const {
     q = "all",
     category = "all",
@@ -29,8 +33,9 @@ const StorePage = async (props: {
     rating = "all",
     sort = "new",
     page = "1",
-  } = props.searchParams;
+  } = searchParams;
 
+  // Fetch products and total pages
   const { data: products, totalPages } = await getAllProducts({
     query: q,
     category,
@@ -155,7 +160,7 @@ const StorePage = async (props: {
       </div>
 
       {/* Pagination */}
-      <CustomPagination page={page} totalPages={totalPages} />
+      <CustomPagination page={Number(page)} totalPages={totalPages} />
     </div>
   );
 };
