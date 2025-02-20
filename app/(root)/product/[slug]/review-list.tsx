@@ -70,7 +70,7 @@ const ReviewList = ({
           <Card key={review.id}>
             <CardHeader>
               <div className=" flex-between">
-                <CardTitle className="h4 uppercase text-accent-foreground">
+                <CardTitle className="body-1 uppercase t">
                   {review.title}
                 </CardTitle>
               </div>

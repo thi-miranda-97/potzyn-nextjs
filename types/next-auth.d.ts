@@ -31,18 +31,3 @@ declare module "next-auth" {
 type OrderItemForCreation = Omit<CartItem, "stock"> & {
   price: number; // Ensure the price is a number when passing it to Prisma
 };
-
-// interface Product {
-//   id: string | number; // Adjust type as necessary (e.g., string or number based on your ID format)
-//   name: string;
-//   slug: string;
-//   category: string;
-//   description: string;
-//   images: string[]; // Assuming this is an array of image URLs
-//   price: number;
-//   rating: number;
-//   numReviews: number;
-//   stock: number;
-//   isFeatured: boolean;
-//   createdAt: string; // Assuming this is a date string
-// }
