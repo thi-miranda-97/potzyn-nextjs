@@ -42,11 +42,6 @@ Rename `.example-env` to `.env` and add the following:
 
 Sign up for a free PostgreSQL database through **Vercel** or any other provider.
 
-**Example:**
-
-```
-DATABASE_URL="postgresql://username:password@host:port/dbname"
-```
 
 #### Next Auth Secret
 
@@ -56,27 +51,13 @@ Generate a secret using:
 openssl rand -base64 32
 ```
 
-**Example:**
-
-```
-NEXTAUTH_SECRET="xmVpackzg9sdkEPzJsdGse3dskUY+4ni2quxvoK6Go="
-```
-
 #### PayPal Client ID and Secret
 
 Create a PayPal developer account and get your credentials.
 
-**Example:**
-
-```
-PAYPAL_CLIENT_ID="AeFIdonfA_dW_ncys8G4LiECWBI9442IT_kRV15crlmMApC6zpb5Nsd7zlxj7UWJ5FRZtx"
-PAYPAL_APP_SECRET="REdG53DEeX_ShoPawzM4vQHCYy0a554G3xXmzSxFCDcSofBBTq9VRqjs6xsNVBcbjqz--HiiGoiV"
-```
-
 #### Stripe Publishable and Secret Key
 
 Create a Stripe account and get your API keys.
-
 
 #### Uploadthing Settings
 
