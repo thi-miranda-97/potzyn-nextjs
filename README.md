@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Potzyn 🌿
 
-## Getting Started
+A full-featured **E-Commerce Plant Shop** built with **Next.js**, **TypeScript**, **PostgreSQL**, and **Prisma**.
 
-First, run the development server:
+---
+
+## Features
+
+- **Secure Authentication**: Next Auth with JWT and cookies for session management.
+- **Admin Dashboard**: Manage products, orders, and users with **Recharts** for analytics.
+- **User Profiles**: Order history and review systems for enhanced user retention.
+- **Payment Integration**: Real-time payments via **Stripe** and **PayPal**, including cash on delivery.
+- **Dynamic Search & Filtering**: Advanced search, filters, and sorting for products.
+- **Multiple Product Images**: Upload and manage images using **Uploadthing**.
+- **Ratings & Reviews**: User-generated reviews and ratings for products.
+- **SEO Optimization**: Server-side rendering (SSR), meta tags, and structured data.
+- **Dark/Light Mode**: Toggle between themes for a personalized experience.
+- **Interactive Checkout**: Smooth and secure checkout process.
+- **Performance Optimization**: Code-splitting, lazy loading, and optimized database queries.
+
+---
+
+## Usage
+
+### Install Dependencies
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you encounter dependency compatibility issues (e.g., React 19), run:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install --legacy-peer-deps
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Environment Variables
 
-## Learn More
+Rename `.example-env` to `.env` and add the following:
 
-To learn more about Next.js, take a look at the following resources:
+#### PostgreSQL Database URL
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sign up for a free PostgreSQL database through **Vercel** or any other provider.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Example:**
 
-## Deploy on Vercel
+```
+DATABASE_URL="postgresql://username:password@host:port/dbname"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Next Auth Secret
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Generate a secret using:
+
+```bash
+openssl rand -base64 32
+```
+
+**Example:**
+
+```
+NEXTAUTH_SECRET="xmVpackzg9sdkEPzJsdGse3dskUY+4ni2quxvoK6Go="
+```
+
+#### PayPal Client ID and Secret
+
+Create a PayPal developer account and get your credentials.
+
+**Example:**
+
+```
+PAYPAL_CLIENT_ID="AeFIdonfA_dW_ncys8G4LiECWBI9442IT_kRV15crlmMApC6zpb5Nsd7zlxj7UWJ5FRZtx"
+PAYPAL_APP_SECRET="REdG53DEeX_ShoPawzM4vQHCYy0a554G3xXmzSxFCDcSofBBTq9VRqjs6xsNVBcbjqz--HiiGoiV"
+```
+
+#### Stripe Publishable and Secret Key
+
+Create a Stripe account and get your API keys.
+
+
+#### Uploadthing Settings
+
+Sign up at [Uploadthing](https://uploadthing.com/) and get your credentials.
+
+
+#### Resend API Key
+
+Sign up at [Resend](https://resend.io/) and get your API key.
+
+
+### Run the Application
+
+```bash
+# Run in development mode
+npm run dev
+
+# Build for production
+npm run build
+
+# Export static site
+npm run export
+```
+
+Open (http://localhost:3000) in your browser to view the app.
+
+---
+
+## Prisma Studio
+
+To open **Prisma Studio** and manage your database, run:
+
+```bash
+npx prisma studio
+```
+
+---
+
+## Seed Database
+
+To seed the database with sample data, run:
+
+```bash
+npx tsx ./db/seed
+```
+
+---
+
+## Demo
+
+Check out the live demo here: https://potzyn-nextjs.vercel.app/
+
+
+## License
+
+**MIT License**
+
+Copyright (c) [2025] [Thi Nguyen]
+
+This project is open source and free to use. However, please do not copy the design or code directly and claim it as your own. If you use this project as inspiration or a reference, kindly give credit by linking back to this repository.
+
+---
+
+Enjoy exploring **Potzyn**! 🌿 If you have any questions or feedback, feel free to open an issue or reach out.
+
+Happy Coding! 🚀
