@@ -26,9 +26,9 @@ export default function BlogItem({ blog }: { blog: Blog }) {
           <Image
             src={blog.images}
             alt={blog.title}
-            height={500}
+            height={280}
             width={500}
-            priority={true}
+            priority
             className="w-full h-full"
           />
         </Link>
@@ -54,7 +54,11 @@ export default function BlogItem({ blog }: { blog: Blog }) {
           </CardHeader>
 
           {/* "Read more" Link */}
-          <Link href={`/blog/${blog.id}`} className="link body-2">
+          <Link
+            href={`/blog/${blog.id}`}
+            aria-label="Read more a blog post link"
+            className="link body-2"
+          >
             Read more
           </Link>
         </CardContent>

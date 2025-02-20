@@ -57,15 +57,18 @@
   .link {
     @apply text-primary-foreground pb-[1px] transition-all duration-300 hover:text-primary;
   }
+  .icon-button {
+    @apply w-6 h-6 p-1 lg:p-2 rounded-full;
+  }
 }
 
 @layer base {
   :root {
-    --background: #e7eceb;
+    --background: #ffffff;
     --foreground: #020705;
 
     --accent: #cfd9d6;
-    --accent-foreground: #587b70;
+    --accent-foreground: #030d0a;
     --muted: #88a199;
     --muted-foreground: #092119;
 
@@ -91,10 +94,10 @@
 
   .dark {
     --background: #11140b;
-    --foreground: #f7faf1;
+    --foreground: #ffffff;
 
-    --accent: #222917;
-    --accent-foreground: #c4db9d;
+    --accent: #333d22;
+    --accent-foreground: #e6efd5;
 
     --muted: #55663a;
     --muted-foreground: #d5e5b9;

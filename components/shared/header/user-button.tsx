@@ -36,6 +36,10 @@ const UserButton = async () => {
         <DropdownMenuTrigger asChild>
           <div className="flex items-center">
             <Button
+              type="button"
+              aria-label="User Button"
+              aria-haspopup="true" // Indicates the button controls a dropdown
+              aria-expanded={false}
               size="sm"
               variant="default"
               className="body-2 relative w-16 h-8 rounded-md ml-2 flex items-center justify-center"

@@ -41,6 +41,7 @@ export default function Footer() {
           <XIcon />
           {isVisible && (
             <Button
+              aria-label="Back to top button"
               variant="outline"
               className="cursor-pointer hover:scale-105 transition-transform"
               onClick={scrollToTop}

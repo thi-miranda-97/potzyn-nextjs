@@ -69,7 +69,11 @@ const Homepage = async () => {
         />
 
         <div className="flex-center">
-          <Link href="/blog" className="link text-center">
+          <Link
+            href="/blog"
+            className="text-center"
+            aria-label="Navigate to Blog Page"
+          >
             Read more tips <DoubleArrowIcon />
           </Link>
         </div>

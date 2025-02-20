@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Product } from "@/types";
+
 interface ProductProps {
   product: Product;
 }
@@ -26,10 +27,11 @@ export default function ProductCard({ product }: ProductProps) {
           href={`/product/${product.slug}`}
         >
           <Image
-            src={product.images[0]}
+            src={product.images[0].replace(".jpg", ".webp")}
             alt={product.name}
             height={300}
             width={300}
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority
             className="w-full h-full"
           />
@@ -66,7 +68,10 @@ export default function ProductCard({ product }: ProductProps) {
                   <p className="text-center font-bold text-[#f6f6f6]">
                     ${product.price}
                   </p>
-                  <Button className="rounded-full hover-scale">
+                  <Button
+                    aria-label="Cart button"
+                    className="rounded-full hover-scale"
+                  >
                     <LocalMallOutlinedIcon />
                   </Button>
                 </CardFooter>

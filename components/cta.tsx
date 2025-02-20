@@ -89,19 +89,19 @@ export default function CTA({
         <div className="grid-between grid-cols-4 justify-start gap-6 mb-5 lg:mb-10">
           <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Days</span>
-            <h3 className="h3">{days}</h3>
+            <p className="font-bold text-xl lg:text-2xl">{days}</p>
           </div>
           <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Hours</span>
-            <h3 className="h3">{hours}</h3>
+            <p className="font-bold text-xl lg:text-2xl">{hours}</p>
           </div>
           <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Minutes</span>
-            <h3 className="h3">{minutes}</h3>
+            <p className="font-bold text-xl lg:text-2xl">{minutes}</p>
           </div>
           <div className="w-full bg-accent rounded-md px-5 lg:px-10 py-2 lg:py-4 flex flex-col items-center">
             <span className="body-1">Seconds</span>
-            <h3 className="h3">{seconds}</h3>
+            <p className="font-bold text-xl lg:text-2xl">{seconds}</p>
           </div>
         </div>
         <form
